@@ -1,0 +1,49 @@
+// Checking division by zero.
+#include <iostream>
+
+using namespace std;
+
+
+enum error_code {DIVIDE_BY_ZERO, FRATIONAL_ANSWER};
+
+int MyDivide(int num1, int num2)
+{
+    if(num2 == 0) {
+        throw DIVIDE_BY_ZERO;
+    }
+    if(num1 % num2 != 0) {
+        throw FRATIONAL_ANSWER;
+    }
+    return num1 / num2;
+}
+
+
+//Handle possible exceptions... return 0 in case of any error
+int averageArray(int nums[], int size) {
+    int total = 0;
+    for(int i = 0; i < size; i++)
+        total = total + nums[i];
+
+
+    try {
+        int avg = MyDivide(total, size);
+        return avg;
+    }
+    catch(...) {
+        //gobble up any exception and just return 0
+        return 0;
+    }
+}
+
+
+
+int main()
+{
+    int list1[] = {1, 2, 4};
+
+    //No way exception gets here
+    int avg = averageArray(list1, 3);
+    cout << avg;
+
+    return 0;
+}

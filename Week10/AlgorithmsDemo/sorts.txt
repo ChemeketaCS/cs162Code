@@ -1,0 +1,69 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+
+class Person {
+public:
+    Person(int a, string n) : age(a), name(n) {}
+    string getName() const { return name; }
+    int getAge() const { return age; }
+private:
+    int age;
+    string name;
+};
+
+bool ageCompare(const Person& p1, const Person& p2) {
+    return p1.getAge() > p2.getAge();
+}
+
+bool nameCompare(const Person& p1, const Person& p2) {
+    return p1.getName() < p2.getName();
+}
+
+
+bool greaterCompare(int x, int y) {
+    return x > y;
+}
+
+int main()
+{
+
+    vector<int> vec {12, 3, 42, 6, 6, 18, 6};
+
+    sort(vec.begin(), vec.end());
+
+    sort(vec.begin(), vec.end(), greaterCompare);
+
+    cout << "Sorted: ";
+    for(auto it = vec.begin(); it != vec.end(); ++it)
+        cout << *it << " ";
+    cout <<endl;
+
+
+    //------------People---------------
+    vector<Person> people;
+    people.push_back( Person(22, "Joe") );
+    people.push_back( Person(32, "Anne") );
+
+
+    //sort by age
+    sort(people.begin(), people.end(), ageCompare);
+
+    for(auto it = people.begin(); it != people.end(); ++it)
+        cout << it->getName() << " ";
+    cout <<endl;
+
+
+    //sort by name
+    sort(people.begin(), people.end(), nameCompare);
+
+    for(auto it = people.begin(); it != people.end(); ++it)
+        cout << it->getName() << " ";
+    cout <<endl;
+
+    return 0;
+}
+

@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class Circle {
+private:
+    //STATE/PROPERTIES
+    double radius;
+    double x;
+    double y;
+
+public:
+    //CONSTRUCTORS
+    Circle() {
+        radius = 2;
+        x = 0;
+        y = 0;
+    }
+
+    Circle(double theRadius) {
+        radius = theRadius;
+        x = 0;
+        y = 0;
+    }
+
+    Circle(double theRadius, double xLoc, double yLoc) {
+        radius = theRadius;
+        x = xLoc;
+        y = yLoc;
+    }
+
+    //BEHAVIORS
+    double getArea() {
+        return radius * radius * 3.14;
+    }
+
+    void translate(double deltaX, double deltaY) {
+        x += deltaX;
+        y += deltaY;
+    }
+
+    void print() {
+        cout << "Circle with a radius of " << radius << endl
+             << "    centered at " << x << ", " << y << endl;
+    }
+
+    //ACCESSORS
+    double getX() { return x; }
+    double getY() { return y; }
+    double getRadius() { return radius; }
+
+    //MUTATORS
+    void setRadius(double r) {
+        radius = abs(r);
+    }
+    void setX(double newX) {
+        x = newX;
+    }
+    void setY(double newY) {
+        y = newY;
+    }
+};
+
+int main()
+{
+    Circle c1(4, 12, 3);
+    c1.print();
+
+    //Use public functions to mutate/access private values
+    c1.setRadius(10);
+    c1.print();
+    cout << "c1's x location is: " << c1.getX() << endl;
+
+    //Example of making an anonymous Circle
+    // Will be printed and then immediately forgotten about
+    Circle(5).print();
+
+    return 0;
+}

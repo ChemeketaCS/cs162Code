@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main( )
+{
+    int nums[] = {5, 4, 8, 2, 10};
+
+
+    int* arrayLoc = nums;          //point to start of array
+
+    int count = 0;
+    while(count < 5) {
+        cout << *arrayLoc << " ";  //print current pointed value
+        arrayLoc++;                //go to next value
+
+        count++;
+    }
+
+    return 0;
+}
+

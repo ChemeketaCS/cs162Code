@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+
+
+using namespace std;
+
+int main()
+{
+    int nums[6] = {0, 1, 1, 1, 4, 9};
+
+    //sort the array
+    sort(nums, nums+6);
+
+    //copy the array
+    int nums2[6];
+    copy(nums, nums+6, nums2);
+
+    for(int num : nums2) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+

@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+
+
+
+// Our recursive helper function
+int betterFibonacci(int index, int prev, int secondPrev);
+
+// Easier to use function that starts up recursive one
+int fib(int index) {
+    return betterFibonacci(index, 1, 0);
+}
+
+
+int main()
+{
+    // Prompt the user to enter an integer
+    cout <<  "Enter an index for the Fibonacci number: ";
+    int index;
+    cin >> index;
+
+    // Display factorial
+    cout << "Fibonacci number at index " << index << " is "
+         << fib(index) << endl;
+
+    return 0;
+}
+
+
+int indent_level = 0;
+string indent() {
+    string out = "";
+    for(int i = 0; i < indent_level; i++)
+        out += "   ";
+    return out;
+}
+
+
+////Plain version of better recursive Fibonacci
+//int betterFibonacci(int index, int previous, int secondPrevious) {
+//    int current = previous + secondPrevious;
+//    if(index == 0)
+//        return secondPrevious;
+//    else if(index == 1)
+//        return previous;
+//    else {
+//        return betterFibonacci(index - 1,current, previous);
+//    }
+//}
+
+
+
+// The function for finding the Fibonacci number
+//Version with debugging printing
+int betterFibonacci(int index, int previous, int secondPrevious) {
+
+    cout << indent() << "fib(" << index << ", "
+                               << previous << ", "
+                               << secondPrevious << ")" << endl;
+    indent_level++;
+
+    int current = previous + secondPrevious;
+
+    if(index == 0) {
+        indent_level--;
+        return secondPrevious;
+    } else if(index == 1) {
+        indent_level--;
+        return previous;
+    } else {
+        indent_level--;
+        return betterFibonacci(index - 1,current, previous);
+    }
+}

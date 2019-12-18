@@ -1,0 +1,75 @@
+#include <iostream>
+#include <vector>
+#include <stdexcept>
+using namespace std;
+
+class Point {
+private:
+	int x;
+	int y;
+public:
+	Point() { x = 0; y = 0;}
+	Point(int xVal, int yVal) : x(xVal), y(yVal) {}
+	//..other stuff...
+};
+
+
+//Pass by reference to avoid copy overhead
+void print(const vector<int>& v) {
+	for(unsigned int i = 0; i < v.size(); i++) {
+		cout << v[i] << " ";
+	}
+	cout << endl;
+}
+
+int main( )
+{
+
+	vector<double> vec1;                //empty - 0 size
+	vector<int> vec2(12);               //12 ints all 0
+	vector<char> vec3(50, 'A');         //50 char's all A
+	vector<Point> vec4(5);              //5 points all built with Point()
+	vector<Point> vec5(5, Point(3,2));  //3 points all copies of Point(3,2)
+	vector<Point*> vec6;                //empty vector of Point pointers
+	vector<int> vec7 {1, 2, 3, 4, 5};   //initialize with list
+
+	vector<int> v;          //empty
+	v.push_back(10);        //add three things
+	v.push_back(3);
+	v.push_back(8);
+
+	v[1] = 99;              //change second to 99
+
+	//Print vector
+	for(unsigned int i = 0; i < v.size(); i++) {
+		cout << v[i] << " ";
+	}
+	cout << endl;
+
+
+
+	cout << "Chaging item 100 in vector?!?" << endl;
+
+	v[100] = 99;            //this may blow up or may just change something else in memory
+
+	try {
+		v.at(100) = 99;     //this is safer - will throw exception
+	}
+	catch(out_of_range e) {
+		cout << "Silly - you can't do that!" << endl;
+	}
+
+
+
+	cout << "Making copy and chaging first item in copy:" << endl;
+	vector<int> v2 = v;
+	v2[0] = 5;
+	print(v2);
+
+	cout << "Original:" << endl;
+	print(v);
+
+
+	return 0;
+}
+

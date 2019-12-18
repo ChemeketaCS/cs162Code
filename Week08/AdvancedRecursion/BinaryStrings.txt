@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+
+void printBinaryStrings(int digitsLeft, string soFar) {
+    if(digitsLeft == 0) {
+        //done - print what we have
+        cout << soFar << endl;
+        return;
+    }
+
+    //we can add either 1 or 0, need to do both versions
+    string with0 = soFar + "0";
+    printBinaryStrings(digitsLeft - 1, with0);
+
+    string with1 = soFar + "1";
+    printBinaryStrings(digitsLeft - 1, with1);
+}
+
+void printBinaryStrings(int length) {
+    //start process - call recursive function with extra parameter
+    string start = "";
+    printBinaryStrings(length, start);
+}
+
+int main() {
+    cout << "Possibly binary strings of length 4:" << endl;
+    printBinaryStrings(4);
+}

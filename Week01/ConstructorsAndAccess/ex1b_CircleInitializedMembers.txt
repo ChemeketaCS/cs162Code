@@ -1,0 +1,57 @@
+#include <iostream>
+
+using namespace std;
+
+class Circle {
+public:
+    //STATE/PROPERTIES
+
+    //C++11 feature: provide default initialization of members
+    double radius = 1;
+    double x = 0;
+    double y = 0;
+
+    //CONSTRUCTORS
+    Circle() {
+        //Nothing to do - initalized where declared
+    }
+
+    Circle(double theRadius) {
+        //x, y already 0
+        radius = theRadius;
+    }
+
+    Circle(double theRadius, double xLoc, double yLoc) {
+        radius = theRadius;
+        x = xLoc;
+        y = yLoc;
+    }
+
+
+    //BEHAVIORS
+    double getArea() {
+        return radius * radius * 3.14;
+    }
+
+    void print() {
+        cout << "Circle with a radius of " << radius << endl
+             << "    centered at " << x << ", " << y;
+    }
+
+};
+
+int main()
+{
+    Circle c1;
+    c1.print();
+
+    //can directly change public members:
+    c1.radius = 10;
+    c1.print();
+
+    Circle c2(4, 12, 3);
+    c2.print();
+
+    return 0;
+}
+

@@ -1,0 +1,58 @@
+//-------------------------------------------
+//Self-Aggregating People objects
+//-------------------------------------------
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+//A Person can be married by pointing to another Person
+class Person {
+private:
+	Person* spouse; //memory address of our spouse, nullptr = not married
+	string name;
+	int age;
+public:
+	Person() {
+		age = 0;
+		name = "?";
+		spouse = nullptr;
+	}
+	Person(string nameValue, int ageValue) {
+		age = ageValue;
+		name = nameValue;
+		spouse = nullptr;
+	}
+
+	void print() {
+		cout << name << " who is " << age << endl;
+		if(spouse != nullptr)
+			cout << "      married to " << spouse->name << endl;
+	}
+
+	//Take memory address of person, store that as out spouse
+	void setSpouse(Person* other) {
+		spouse = other;
+	}
+
+	string getName() { return name; }
+	void setName(string val) { name = val; }
+};
+
+
+int main()
+{
+	Person p1("Joe", 42);
+	Person p2("Mary", 38);
+	p1.print();
+	p2.print();
+
+	cout << "Getting married..." << endl;
+	p1.setSpouse(&p2);
+	p2.setSpouse(&p1);
+
+	p1.print();
+	p2.print();
+}

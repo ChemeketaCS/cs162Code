@@ -1,0 +1,27 @@
+#include <iostream>
+#include <algorithm>
+#include <numeric>
+
+
+using namespace std;
+
+
+int mult(int x, int y) {
+    return x * y;
+}
+
+int main()
+{
+
+    vector<int> vec {12, 3, 42, 6, 6, 18, 6};
+
+    //add up the numbers
+    int total = accumulate(vec.begin(), vec.end(), 0);
+    cout << total << endl;
+
+    //multiply the numbers
+    int prod = accumulate(vec.begin(), vec.end(), 1, mult);
+    cout << prod << endl;
+
+}
+

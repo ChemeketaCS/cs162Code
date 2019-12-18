@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# QTCreator related
+.qmake.stash
+debug/
+release/
+*.pro.user*
+Makefile*
