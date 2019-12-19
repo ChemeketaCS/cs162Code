@@ -120,6 +120,20 @@ IntList IntList::operator+(const IntList& other) const {
 }
 
 
+int IntList::sumBetween(int start, int end) const {
+    if( start < 0 || start >= currentSize
+        || end < start || end >= currentSize ) {
+        throw out_of_range("Bad index for [ ]: ");
+    }
+
+    int sum = 0;
+    for(int i = start; i <= end; i++) {
+        sum += values[i];
+    }
+    return sum;
+}
+
+
 bool IntList::operator==(const IntList& other) const {
     if(currentSize != other.currentSize)
         return false;  //can't be the same if we don't have same # items

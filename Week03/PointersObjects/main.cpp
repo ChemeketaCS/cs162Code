@@ -29,9 +29,5 @@ int main()
     Point* pp2 = &p1;               //Get pointer to it
     cout << pp2->getX() << endl;    //Same as(*pp2).getX()
 
-    //Make point on the heap
-    Point* pp = new Point(3, -2);
-    cout << pp->getX() << endl;  // (*pp).getX()
-    delete pp;  //remove it from the heap
 }
 

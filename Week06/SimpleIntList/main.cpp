@@ -15,6 +15,8 @@ int main()
     cout << "Initial list:" << endl;
     cout << myArray << endl << endl;
 
+    cout << "Sum from 0-2:" << myArray.sumBetween(0, 2) << endl << endl;
+
     IntList myArray2 = myArray; //Use copy ctor
     myArray[1] = 999;
     cout << "Made copy, modified original: " << endl;

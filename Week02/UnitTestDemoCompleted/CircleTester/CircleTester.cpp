@@ -13,7 +13,6 @@ using doctest::Approx;
 #include <cmath>
 using namespace std;
 
-using doctest::Approx;
 
 
 TEST_CASE( "Circle/No-arg constructor" ) {

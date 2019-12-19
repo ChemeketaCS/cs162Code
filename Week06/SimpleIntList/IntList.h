@@ -53,6 +53,10 @@ public:
     //Check if two lists are identical
     bool operator==(const IntList& other) const;
 
+    //Get the sum of all elements between indexes start and end inclusive
+    //  Throws an exception if indexes are bad
+    int sumBetween(int start, int end) const;
+
     //Declare non-member << function as friend so it can access member variables
     friend std::ostream& operator<<(std::ostream& stream, const IntList& theList);
 };
