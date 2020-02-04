@@ -26,5 +26,5 @@ int main()
         cout << "You used a bad index in: " << error.what() << endl;
    }
 
-    return 0;
+   return 0;
 }

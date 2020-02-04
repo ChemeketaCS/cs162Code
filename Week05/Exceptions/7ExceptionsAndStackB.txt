@@ -3,8 +3,7 @@
 
 using namespace std;
 
-
-enum error_code {DIVIDE_BY_ZERO, FRATIONAL_ANSWER};
+enum my_error_code {DIVIDE_BY_ZERO, FRACTIONAL_ANSWER};
 
 int MyDivide(int num1, int num2)
 {
@@ -12,7 +11,7 @@ int MyDivide(int num1, int num2)
         throw DIVIDE_BY_ZERO;
     }
     if(num1 % num2 != 0) {
-        throw FRATIONAL_ANSWER;
+        throw FRACTIONAL_ANSWER;
     }
     return num1 / num2;
 }

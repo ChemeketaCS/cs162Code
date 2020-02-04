@@ -4,7 +4,7 @@
 using namespace std;
 
 
-enum error_code {DIVIDE_BY_ZERO, FRATIONAL_ANSWER};
+enum my_error_code {DIVIDE_BY_ZERO, FRACTIONAL_ANSWER};
 
 int MyDivide(int num1, int num2)
 {
@@ -12,10 +12,11 @@ int MyDivide(int num1, int num2)
         throw DIVIDE_BY_ZERO;
     }
     if(num1 % num2 != 0) {
-        throw FRATIONAL_ANSWER;
+        throw FRACTIONAL_ANSWER;
     }
     return num1 / num2;
 }
+
 
 
 //Makes no effort to catch possible exception
@@ -39,10 +40,10 @@ int main()
         int avg = averageArray(list1, 3);
         cout << avg;
     }
-    catch(error_code error) {
+    catch(my_error_code error) {
         if(error == DIVIDE_BY_ZERO)
             cout << "That is impossible" << endl;
-        if(error == FRATIONAL_ANSWER)
+        if(error == FRACTIONAL_ANSWER)
             cout << "That answer would be truncated" << endl;
     }
 
