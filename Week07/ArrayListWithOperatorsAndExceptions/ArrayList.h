@@ -161,8 +161,8 @@ template <class T>
 T ArrayList<T>::get(int location) const
 {
     if(location < 0 || location >= currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in get: " + to_string(location);
+        throw out_of_range(msg);
     }
 
     return list[location];
@@ -172,8 +172,8 @@ template <class T>
 void ArrayList<T>::set(int location, const T& repItem)
 {
     if(location < 0 || location >= currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in set: " + to_string(location);
+        throw out_of_range(msg);
     }
 
     list[location] = repItem;
@@ -201,8 +201,8 @@ template <class T>
 void ArrayList<T>::removeAt(int location)
 {
     if(location < 0 || location >= currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in removeAt: " + to_string(location);
+        throw out_of_range(msg);
     }
 
     //Shift everyone after location to left "remove" the item
@@ -218,8 +218,8 @@ template <class T>
 void ArrayList<T>::insertAt(int location, const T& insertItem)
 {
     if(location < 0 || location > currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in insertAt: " + to_string(location);
+        throw out_of_range(msg);
     }
 
     //Check to see if need more room...
@@ -280,8 +280,8 @@ template <class T>
 T& ArrayList<T>::operator[](int index)
 {
     if(index < 0 || index >= currentSize) {
-        cout << "Bad index " << index << " in list of size " << currentSize << endl;
-        exit(0);
+        string msg = "Bad index in []: " + to_string(index);
+        throw out_of_range(msg);
     }
 
     return list[index];
