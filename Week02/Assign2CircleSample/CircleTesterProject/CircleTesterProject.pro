@@ -2,16 +2,13 @@ CONFIG   += console
 CONFIG	 -= debug_and_release 
 CONFIG   -= app_bundle
 
-INCLUDEPATH += .. \
-    ../CircleProjectFinal/
+INCLUDEPATH += ../CircleProjectFinal/
 
 TEMPLATE = app
-SOURCES += catch.hpp \
-    ../CircleProjectFinal/Circle.cpp \
-    ../CircleProjectFinal/Point.cpp \
-    CircleTester.cpp
-SOURCES += mainTester.cpp
-SOURCES +=
+
+SOURCES += ../CircleProjectFinal/Circle.cpp
+SOURCES += ../CircleProjectFinal/Point.cpp
+SOURCES += CircleTester.cpp
 
 
 QMAKE_CXXFLAGS += -std=c++11
@@ -30,6 +27,5 @@ QMAKE_CXXFLAGS += -Wconversion
 QMAKE_CXXFLAGS += -pedantic
 QMAKE_CXXFLAGS += -pedantic-errors
 
-HEADERS += \
-    ../CircleProjectFinal/Circle.h \
-    ../CircleProjectFinal/Point.h
+HEADERS += ../CircleProjectFinal/Circle.h
+HEADERS += ../CircleProjectFinal/Point.h
