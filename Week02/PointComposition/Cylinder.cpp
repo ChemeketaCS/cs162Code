@@ -24,8 +24,8 @@ Cylinder::Cylinder(const Circle& theBase, double theHeight)
 double Cylinder::getSurfaceArea() const {
     //assumes right cylinder...
     double baseArea = base.getArea();
-    double lateralArea = base.getCircumference();
-    return 2* baseArea + lateralArea;
+    double lateralArea = base.getCircumference() * height;
+    return 2 * baseArea + lateralArea;
 }
 
 Circle Cylinder::getBase() const {
