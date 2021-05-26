@@ -6,14 +6,29 @@ using namespace std;
 
 int main()
 {
-    Node<int>* node1 = new Node<int>(10);
-    Node<int>* node2 = new Node<int>(15);
-    Node<int>* node3 = new Node<int>(20);
+    Node<int>* head = new Node<int>(10);
+    Node<int>* tail = head;
 
-    node1->next = node2;
-    node2->next = node3;
+    Node<int>* temp;  //pointer to track new nodes
 
-    cout << node1->element << endl;
-    cout << node1->next->element << endl;
-    cout << node1->next->next->element << endl;
+    //New node at head:
+    temp = new Node<int>(8);
+    temp->next = head;
+    head = temp;
+
+    //New node at tail:
+    temp = new Node<int>(12);
+    tail->next = temp;
+    tail = temp;
+
+
+    //Make a pointer to track our position
+    Node<int>* current = head;
+    //When we hit null, we've gotten to end
+    while(current != nullptr) {
+        cout << current->element << " ";  //work
+        //advance in the list
+        current = current->next;
+    }
+    cout << endl;
 }
