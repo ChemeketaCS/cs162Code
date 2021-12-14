@@ -37,3 +37,4 @@ debug/
 release/
 *.pro.user*
 Makefile*
+.vscode
