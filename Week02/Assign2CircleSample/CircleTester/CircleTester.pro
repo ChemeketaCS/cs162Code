@@ -22,11 +22,12 @@ QMAKE_CXXFLAGS += -Wconversion
 
 #------------------------------
 
-SOURCES += ../CircleProjectFinal/Circle.cpp \
-            ../CircleProjectFinal/Point.cpp \
+SOURCES += ../CircleReal/Circle.cpp \
+            ../CircleReal/Point.cpp \
             CircleTester.cpp
 
-HEADERS += ../CircleProjectFinal/Circle.h \
-            ../CircleProjectFinal/Point.h
+HEADERS += ../CircleReal/Circle.h \
+            ../CircleReal/Point.h \
+            doctest.h
 
-INCLUDEPATH += ../CircleProjectFinal/
+INCLUDEPATH += ../CircleReal/
