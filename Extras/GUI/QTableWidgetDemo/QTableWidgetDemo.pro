@@ -1,15 +1,14 @@
-CONFIG   += console
-CONFIG	 -= debug_and_release 
-CONFIG   -= app_bundle
-
 TEMPLATE = app
-SOURCES += main.cpp \
-    TableDialog.cpp
+CONFIG += cmdline
+CONFIG += c++17
+CONFIG -= app_bundle
+CONFIG -= debug_and_release
 
-QT += widgets
+QMAKE_CXXFLAGS += -pedantic
+QMAKE_CXXFLAGS += -pedantic-errors
 
-QMAKE_CXXFLAGS += -std=c++11
-QMAKE_LFLAGS += -std=c++11
+#prevent warning from pragma used to suppress warnings from doctest.h
+QMAKE_CXXFLAGS += -Wno-unknown-pragmas
 
 QMAKE_CXXFLAGS += -Wmissing-include-dirs
 QMAKE_CXXFLAGS += -Wfloat-equal
@@ -18,11 +17,12 @@ QMAKE_CXXFLAGS += -Winit-self
 QMAKE_CXXFLAGS += -Wshadow
 QMAKE_CXXFLAGS += -Wconversion
 
-# QMAKE_CXXFLAGS += -Werror
-# QMAKE_CXXFLAGS += -Wno-error=unused-variable
+#------------------------------
 
-QMAKE_CXXFLAGS += -pedantic
-QMAKE_CXXFLAGS += -pedantic-errors
+QT += widgets
+
+SOURCES += main.cpp \
+    TableDialog.cpp
 
 HEADERS += \
     TableDialog.h
