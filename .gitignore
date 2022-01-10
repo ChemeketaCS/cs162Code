@@ -38,3 +38,5 @@ release/
 *.pro.user*
 Makefile*
 .vscode
+Week01Code.zip
+.vs
