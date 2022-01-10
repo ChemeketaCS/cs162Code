@@ -12,10 +12,9 @@ Circle::Circle() {
 }
 
 Circle::Circle(double theRadius) {
-    //Make a circle at 0,0 with indicated radius
-    // Radius should never be set to a negative value,
-    // this has a bug!!!
-    radius = theRadius;
+    //Call our setRadius function to set the initial radius
+    // it will make sure we don't use a negative radius
+    setRadius(theRadius);
     x = 0;
     y = 0;
 }

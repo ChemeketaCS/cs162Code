@@ -22,13 +22,9 @@ QMAKE_CXXFLAGS += -Wconversion
 
 #------------------------------
 
-SOURCES += main.cpp \
-    Circle.cpp \
-    Point.cpp
+SOURCES += CircleTester.cpp \
+    Circle.cpp
 
-HEADERS += \
-    Circle.h \
-    Point.h \
-    Cylinder.h
-
+HEADERS += doctest.h \
+    Circle.h
 
