@@ -34,8 +34,8 @@ int main()
 
 
     // Test operators for prefix ++ and postfix --
-    Rational r3(1, 2);
-    Rational r4;
+    Rational r3;
+    Rational r4(1, 2);
     cout << "Doing r3 = r4++. r3 should be old value of r4:" << endl;
     r3 = r4++;
     cout << "r3 is " << r3.toString() << endl;
