@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "RationalWithOperators.h"
+#include "Rational.h"
 
 using namespace std;
 
@@ -21,12 +21,6 @@ int main()
     cout << r1.toString() << " * " << r2.toString() << " = " << product.toString() << endl;
     cout << r1.toString() << " / " << r2.toString() << " = " << quotient.toString() << endl;
 
-    //Test unary +/-
-    Rational temp1 = -r2;
-    cout << temp1.toString() << endl;
-    Rational temp2 = +r2;
-    cout << temp2.toString() << endl;
-
 
     // Test relational operators
     cout << r1.toString() << " > " << r2.toString() << " is " <<
@@ -38,14 +32,10 @@ int main()
     cout << r1.toString() << " != " << r2.toString() << " is " <<
             ((r1 != r2) ? "true" : "false") << endl;
 
-    // Test augmented assignment operators
-    Rational r3(1, 2);
-    r3 += r1;
-    cout << "Started with 1/2, added " << r1.toString() << " then " << r2.toString()
-         << " got " << r3.toString() << endl;
 
+    // Test operators for prefix ++ and postfix --
+    Rational r3(1, 2);
     Rational r4;
-    // Test function operators for prefix ++ and postfix --
     cout << "Doing r3 = r4++. r3 should be old value of r4:" << endl;
     r3 = r4++;
     cout << "r3 is " << r3.toString() << endl;
@@ -56,6 +46,4 @@ int main()
     cout << "r3 is " << r3.toString() << endl;
     cout << "r4 is " << r4.toString() << endl;
 
-
-    return 0;
 }

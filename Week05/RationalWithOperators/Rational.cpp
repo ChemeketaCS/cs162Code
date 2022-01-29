@@ -1,4 +1,4 @@
-#include "RationalWithOperators.h"
+#include "Rational.h"
 #include <sstream>
 
 #include <cmath>
@@ -163,55 +163,6 @@ bool Rational::operator>=(const Rational& secondRational) const
 
 
 
-// Define function operators for shorthand operators
-Rational& Rational::operator+=(const Rational& secondRational)
-{
-    //Calculate new value using self and other Rational
-    int n = numerator * secondRational.getDenominator() +
-            denominator * secondRational.getNumerator();
-    int d = denominator * secondRational.getDenominator();
-
-    //Change this object
-    numerator = n;
-    denominator = d;
-
-    //Return this object... but done as reference
-    return *this;
-}
-
-Rational& Rational::operator-=(const Rational& secondRational)
-{
-    int n = numerator * secondRational.getDenominator()
-            - denominator * secondRational.getNumerator();
-    int d = denominator * secondRational.getDenominator();
-
-    numerator = n;
-    denominator = d;
-
-    return *this;
-}
-
-Rational& Rational::operator*=(const Rational& secondRational)
-{
-    int n = numerator * secondRational.getNumerator();
-    int d = denominator * secondRational.getDenominator();
-
-    numerator = n;
-    denominator = d;
-
-    return *this;
-}
-
-Rational& Rational::operator/=(const Rational& secondRational)
-{
-    int n = numerator * secondRational.getDenominator();
-    int d = denominator * secondRational.numerator;
-
-    numerator = n;
-    denominator = d;
-
-    return *this;
-}
 
 
 // Define function operators for prefix ++ and --
@@ -242,19 +193,3 @@ Rational Rational::operator--(int) //don't need a name for dummy param
     numerator -= denominator;
     return temp;
 }
-
-
-// Define function operators for unary + and -
-Rational Rational::operator+() const
-{
-    //Just return a copy of ourselves
-    return *this;
-}
-
-Rational Rational::operator-() const
-{
-    //Make a new fraction that is this one negated
-    return Rational(-numerator, denominator);
-}
-
-

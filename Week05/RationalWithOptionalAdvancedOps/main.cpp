@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "RationalWithOperators.h"
+#include "Rational.h"
 
 using namespace std;
 

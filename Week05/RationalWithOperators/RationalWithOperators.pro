@@ -23,9 +23,9 @@ QMAKE_CXXFLAGS += -Wconversion
 #------------------------------
 
 SOURCES += main.cpp \
-    RationalWithOperators.cpp
+    Rational.cpp
 
 HEADERS += \
-    RationalWithOperators.h
+    Rational.h
 
 
