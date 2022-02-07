@@ -85,7 +85,7 @@ void IntList::removeAt(int index) {
 }
 
 
-int IntList::operator[](int index) const {
+int IntList::at(int index) const {
     if(index < 0 || index >= currentSize)
         throw out_of_range("Bad index for [ ]: " + to_string(index));
 
@@ -93,7 +93,7 @@ int IntList::operator[](int index) const {
 }
 
 
-int& IntList::operator[](int index) {
+int& IntList::at(int index) {
     if(index < 0 || index >= currentSize)
         throw out_of_range("Bad index for [ ]: " + to_string(index));
 
@@ -148,13 +148,27 @@ bool IntList::operator==(const IntList& other) const {
     return true;
 }
 
+std::string IntList::toString() const {
+    string output = "(";
+    for(int i = 0; i < currentSize - 1; i++) {
+        output += to_string(at(i));
+        output += ", ";
+    }
+    output += to_string(at(currentSize - 1));
+    output += ")";
+
+    return output;
+}
+
+
+//The << operator is NOT a member of SimpleIntList
+//But was declared as a friend to SimpleIntList, so we can access its variables
 std::ostream& operator<<(std::ostream& stream, const IntList& theList) {
     stream << "(";
-    for(int i = 0; i < theList.getSize(); i++) {
-        stream << theList[i];
-        if(i < theList.getSize() - 1)
-            cout << ",";
+    for(int i = 0; i < theList.currentSize - 1; i++) {
+        stream << theList.at(i) << ", ";
     }
+    stream << theList.at(theList.currentSize - 1);
     stream << ")";
 
     return stream;

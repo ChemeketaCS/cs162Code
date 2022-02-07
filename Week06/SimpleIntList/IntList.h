@@ -39,11 +39,11 @@ public:
 
     //const version of [] returns a copy of value at index
     //  can use to read in situations where we need to preserve const-ness
-    int operator[](int index) const;
+    int at(int index) const;
 
     //non-const version of [] returns a reference to the value at index
     //  can use in situations where we want to modify value
-    int& operator[](int index);
+    int& at(int index);
 
     //Make a new int list that has the contents of this list followed by
     //  the contents of the other list
@@ -57,6 +57,11 @@ public:
     //  Throws an exception if indexes are bad
     int sumBetween(int start, int end) const;
 
+    //Returns a string representation of the list
+    std::string toString() const;
+
+    //Providing an external << is an alternative to a toString() function
+    //It would allow for "cout << list;" instead of "cout << list.toString();"
     //Declare non-member << function as friend so it can access member variables
     friend std::ostream& operator<<(std::ostream& stream, const IntList& theList);
 };
