@@ -46,7 +46,7 @@ public:
 
     /**
      * @brief Returns radius of circle
-     * @return radius
+     * @return radius in cm
      */
     double getRadius();
 
