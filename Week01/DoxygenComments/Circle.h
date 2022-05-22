@@ -5,6 +5,9 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
+//Must include string so that the compiler knows what string is in this file
+#include <string>
+
 /**
  * @brief The Circle class represents a circle on the Cartesian plane
  */
@@ -38,10 +41,11 @@ public:
 
 
     /**
-     * @brief Dumps info to console
+     * @brief Creates a string representation of the Circle
+     * @return String formatted like: "Circle with radius: 1 area: 3.14159"
      *
      */
-    void print();
+    std::string toString();
 
 
     /**
