@@ -14,9 +14,10 @@ public:
     ///Get printable representation
     virtual std::string toString() const = 0;
 
-    ///Nothing to do, but make virtual so subclass destructors can be fired
-    /// Should not actually be needed since we are using smart pointers
-	virtual ~ExpressionNode() {}
+    ///We won't actually use it, but a class that is going
+    /// to be inherited from should make a virtual destructor so
+    /// we get the correct child destructor when the time comes
+    virtual ~ExpressionNode();
 };
 
 
@@ -46,16 +47,19 @@ public:
     std::string getSymbol() const;
 
     ///Store another ExpressionNode as the left/right child of this node.
-    void setLeft(std::shared_ptr<ExpressionNode> child);
-    void setRight(std::shared_ptr<ExpressionNode> child);
+    void setLeft(ExpressionNode* child);
+    void setRight(ExpressionNode* child);
+
+    ExpressionNode* getLeft();
+    ExpressionNode* getRight();
 
     virtual int evaluate() const;
     virtual std::string toString() const;
 
 private:
     operationType operation;
-    std::shared_ptr<ExpressionNode> left;           ///left operand
-    std::shared_ptr<ExpressionNode> right;          ///right operand
+    ExpressionNode* left;           ///left operand
+    ExpressionNode* right;          ///right operand
 };
 
 

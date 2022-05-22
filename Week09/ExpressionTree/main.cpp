@@ -1,73 +1,110 @@
 #include <iostream>
 
 #include "ExpressionNode.h"
+#include "ExpressionTree.h"
 
 using namespace std;
 
-///All build tree functions return a shared_ptr to root of expression tree
-///Builds up the expression ((7 + 3) * (5 - 2))
-shared_ptr<ExpressionNode> buildTree1();
-///Builds up the expression (((10 - 3) * 4) % 10)
-shared_ptr<ExpressionNode> buildTree2();
+//Builds up the expression ((7 + 3) * (5 - 2))
+ExpressionNode* buildTree1();
+
+//Builds up the expression (((10 - 3) * 4) % 10)
+ExpressionTree buildTree2();
+
+//Cleans up memory for the tree that starts at node
+void destroyTree(ExpressionNode* node);
 
 int main()
 {
+    //Build a tree on the stack
+    ValueNode n1(7);
+    ValueNode n2(3);
+    BinaryOperatorNode addNode1(BinaryOperatorNode::ADD);
+    addNode1.setLeft(&n1);
+    addNode1.setRight(&n2);
+
+    cout << addNode1.toString() << endl;
+    cout << "Evaluates to: " << addNode1.evaluate() << endl;
+    //No cleanup needed - all data is on the stack
+
+    cout << "-----------------------------------------------------" << endl;
+
     ///---------------set up the tree--------------
-    shared_ptr<ExpressionNode> root = buildTree1();
+    ExpressionNode* root = buildTree1();
+    //main now "owns" all the memory that is connected to root
 
     cout << root->toString() << endl;
     cout << "Evaluates to: " << root->evaluate() << endl;
 
-    cout << "-----------------------------------------------------\n";
+    //have to clean up the memory
+    destroyTree(root);
 
-    root = buildTree2();
+    cout << "-----------------------------------------------------" << endl;
+    ExpressionTree example3 = buildTree2();
+    //main now "owns" all the memory that is connected to root
 
-    cout << root->toString() << endl;
-    cout << "Evaluates to: " << root->evaluate() << endl;
+    cout << example3.getRoot()->toString() << endl;
+    cout << "Evaluates to: " << example3.getRoot()->evaluate() << endl;
+
+    //Expression tree will clean up all memory
 }
 
-
 //Builds up the expression ((7 + 3) * (5 - 2))
-shared_ptr<ExpressionNode> buildTree1() {
+//Caller assumes responsibility for the memory
+ExpressionNode* buildTree1() {
     //Build bottom up
-    shared_ptr<ValueNode> n1(new ValueNode(7));
-    shared_ptr<ValueNode> n2(new ValueNode(3));
-    shared_ptr<BinaryOperatorNode> n3(new BinaryOperatorNode(BinaryOperatorNode::ADD));
+    ValueNode* n1 = new ValueNode(7);
+    ValueNode* n2 = new ValueNode(3);
+    BinaryOperatorNode* n3 = new BinaryOperatorNode(BinaryOperatorNode::ADD);
     n3->setLeft(n1);
     n3->setRight(n2);
 
-    shared_ptr<ValueNode> n4(new ValueNode(5));
-    shared_ptr<ValueNode> n5(new ValueNode(2));
-    shared_ptr<BinaryOperatorNode> n6(new BinaryOperatorNode(BinaryOperatorNode::SUBTRACT));
+    ValueNode* n4 = new ValueNode(5);
+    ValueNode* n5 = new ValueNode(2);
+    BinaryOperatorNode* n6 = new BinaryOperatorNode(BinaryOperatorNode::SUBTRACT);
     n6->setLeft(n4);
     n6->setRight(n5);
 
-    shared_ptr<BinaryOperatorNode> root(new BinaryOperatorNode(BinaryOperatorNode::MULTIPLY));
+    BinaryOperatorNode* root = new BinaryOperatorNode(BinaryOperatorNode::MULTIPLY);
     root->setLeft(n3);
     root->setRight(n6);
 
     return root;
 }
 
+//Recursively destroy nodes rooted at the given node
+void destroyTree(ExpressionNode* node) {
+    if(node == nullptr)
+        return;         //nothing to do here
 
-////Builds up the expression (((10 - 3) * 4) % 10)
-shared_ptr<ExpressionNode> buildTree2() {
-    //Build bottom up
-    shared_ptr<BinaryOperatorNode> subNode( new BinaryOperatorNode(BinaryOperatorNode::SUBTRACT) );
+    //If this is an operator, recursively destroy children
+    BinaryOperatorNode* nodeAsOperator = dynamic_cast<BinaryOperatorNode*>(node);
+    if(nodeAsOperator) {
+        destroyTree(nodeAsOperator->getLeft());
+        destroyTree(nodeAsOperator->getRight());
+    }
 
-    //Don't need to store our own pointers for 10 & 3 if we use make_shared<T>(ptr) to package them up
-    // make_shared produces anonymous shared pointer which will get copied to setLeft
-    // Note that make_shared does its own allocation - don't have to say "new"
-    subNode->setLeft( make_shared<ValueNode>(ValueNode(10)) );
-    subNode->setRight( make_shared<ValueNode>(ValueNode(3)) );
+    //Now it is safe to delete this node
+    delete node;
+}
 
-    shared_ptr<BinaryOperatorNode> multNode( new BinaryOperatorNode(BinaryOperatorNode::MULTIPLY) );
-    multNode->setLeft(subNode);
-    multNode->setRight( make_shared<ValueNode>(ValueNode(4)) );
 
-    shared_ptr<BinaryOperatorNode> modNode( new BinaryOperatorNode(BinaryOperatorNode::MOD) );
-    modNode->setLeft(multNode);
-    modNode->setRight( make_shared<ValueNode>(ValueNode(10)) );
-
-    return modNode;
+//Builds up the expression (((10 - 3) * 4) % 10)
+//Returns it wrapped up in a
+ExpressionTree buildTree2() {
+    ExpressionTree expr2;
+    ValueNode* n1 = expr2.makeValue(10);
+    ValueNode* n2 = expr2.makeValue(3);
+    BinaryOperatorNode* n3 = expr2.makeOp(BinaryOperatorNode::SUBTRACT);
+    n3->setLeft(n1);
+    n3->setRight(n2);
+    ValueNode* n4 = expr2.makeValue(4);
+    BinaryOperatorNode* n5 = expr2.makeOp(BinaryOperatorNode::MULTIPLY);
+    n5->setLeft(n3);
+    n5->setRight(n4);
+    BinaryOperatorNode* n6 = expr2.makeOp(BinaryOperatorNode::MOD);
+    expr2.setMostRecentAsRoot();
+    n6->setLeft(n5);
+    n6->setRight(n1);       //reuse the 10 node
+    return expr2;
 }

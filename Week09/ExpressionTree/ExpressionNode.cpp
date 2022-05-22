@@ -8,6 +8,9 @@
 using namespace std;
 
 
+ExpressionNode::~ExpressionNode() {
+    //not responsible for any cleanup
+}
 
 ValueNode::ValueNode(int val) {
     value = val;
@@ -21,22 +24,28 @@ string ValueNode::toString() const {
     return std::to_string(value);
 }
 
-
 //--------------------------------------------------------
 
 BinaryOperatorNode::BinaryOperatorNode(operationType op) {
     operation = op;
-    //left and right shared_ptrs are automatically initialized to nullptr
-//    left = nullptr;
-//    right= nullptr;
+    left = nullptr;
+    right= nullptr;
 }
 
-void BinaryOperatorNode::setLeft(shared_ptr<ExpressionNode> child) {
+void BinaryOperatorNode::setLeft(ExpressionNode* child) {
     left = child;
 }
 
-void BinaryOperatorNode::setRight(shared_ptr<ExpressionNode> child) {
+void BinaryOperatorNode::setRight(ExpressionNode* child) {
     right = child;
+}
+
+ExpressionNode* BinaryOperatorNode::getLeft() {
+    return left;
+}
+
+ExpressionNode* BinaryOperatorNode::getRight() {
+    return right;
 }
 
 int BinaryOperatorNode::evaluate() const {
@@ -111,15 +120,3 @@ string BinaryOperatorNode::toString() const {
 
     return s;
 }
-
-////If we were not using shared_ptrs, this node would have to delete both its children
-//BinaryOperatorNode::~BinaryOperatorNode() {
-//    //This node's parent will delete it.
-//    //Just worry about children
-//    if(left != nullptr) {
-//        delete left;
-//    }
-//    if(right != nullptr) {
-//        delete right;
-//    }
-//}

@@ -23,10 +23,12 @@ QMAKE_CXXFLAGS += -Wconversion
 #------------------------------
 
 SOURCES += main.cpp \
-    ExpressionNode.cpp
+    ExpressionNode.cpp \
+    ExpressionTree.cpp
 
 HEADERS += \
-    ExpressionNode.h
+    ExpressionNode.h \
+    ExpressionTree.h
 
 OTHER_FILES +=
 
