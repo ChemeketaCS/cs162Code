@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -33,9 +34,13 @@ public:
         return radius * radius * 3.14;
     }
 
-    void print() {
-        cout << "Circle with a radius of " << radius << endl
-             << "    centered at " << x << ", " << y;
+    string toString() {
+        stringstream outStream;
+        outStream << "Circle with ";
+        outStream << "  radius: " << radius;
+        outStream << "  area: " << getArea();
+        outStream << "  centered at " << x << "," << y;
+        return outStream.str();
     }
 
 };
@@ -43,15 +48,13 @@ public:
 int main()
 {
     Circle c1;
-    c1.print();
+    cout << c1.toString() << endl;
 
     //can directly change public members:
     c1.radius = 10;
-    c1.print();
+    cout << c1.toString() << endl;
 
     Circle c2(4, 12, 3);
-    c2.print();
-
-    return 0;
+    cout << c2.toString() << endl;
 }
 

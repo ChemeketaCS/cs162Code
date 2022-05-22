@@ -17,7 +17,7 @@ public:
     Circle(double startRadius, double startX, double startY);
 
     double getArea();
-    void print();
+    string toString();
     double getRadius();
     void setRadius(double newRadius);
 
@@ -34,7 +34,6 @@ int main()
     c1.setRadius(12);
 
     cout << c1.getRadius();
-    return 0;
 }
 
 
@@ -63,9 +62,13 @@ double Circle::getArea() {
     return radius * radius * 3.14;
 }
 
-void Circle::print() {
-    cout << "Circle with a radius of " << radius << endl
-         << "    centered at " << x << ", " << y;
+string Circle::toString() {
+    double myArea = getArea();
+
+    string output = "Circle with";
+    output += " radius: " + to_string(radius);
+    output += " area: " + to_string(myArea);
+    return output;
 }
 
 double Circle::getRadius() { return radius; }

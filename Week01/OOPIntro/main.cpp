@@ -12,6 +12,14 @@ public:
         return radius * radius * 3.14;
     }
 
+    string toString() {
+        double myArea = getArea();
+
+        string output = "Circle with";
+        output += " radius: " + to_string(radius);
+        output += " area: " + to_string(myArea);
+        return output;
+    }
 };
 
 int main()
@@ -19,15 +27,11 @@ int main()
     Circle c1;
     c1.radius = 5.5;
 
-    cout << "C1 has radius: " << c1.radius
-         << " and area: " << c1.getArea() << endl;
+    double area = c1.getArea();
+    cout << "c1's area is " << area << endl;
 
     Circle c2;
     c2.radius = 12;
-
-    cout << "C2 has radius: " << c2.radius
-         << " and area: " << c2.getArea() << endl;
-
-    return 0;
+    cout << "c2: " << c2.toString() << endl;
 }
 

@@ -34,9 +34,13 @@ double Circle::getArea() {
     return radius * radius * 3.14;
 }
 
-void Circle::print() {
-    cout << "Circle with a radius of " << radius << endl
-         << "    centered at " << x << ", " << y;
+string Circle::toString() {
+    double myArea = getArea();
+
+    string output = "Circle with";
+    output += " radius: " + to_string(radius);
+    output += " area: " + to_string(myArea);
+    return output;
 }
 
 double Circle::getRadius() { return radius; }
