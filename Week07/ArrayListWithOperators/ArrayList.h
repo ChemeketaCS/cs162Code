@@ -2,7 +2,7 @@
 #define ARRAYLIST_H
 
 #include <iostream>
-#include <iostream>
+#include <exception>
 #include <sstream>
 
 using namespace std;
@@ -30,7 +30,9 @@ public:
 
     int size() const;
 
-    void append(const T& newItem);
+    void insertEnd(const T& newItem);
+
+    T removeEnd();
 
     T get(int location) const;
 
@@ -41,13 +43,6 @@ public:
     void removeAt(int location);
 
     string toString() const;
-
-    //Returns location of first matching item in array
-    //  Returns -1 if not found
-    int search(const T& searchItem) const;
-
-    //Puts array into ascending order
-    void sort();
 
 private:
     //double storage capacity
@@ -148,13 +143,26 @@ void ArrayList<T>::grow()
 
 
 template <class T>
-void ArrayList<T>::append(const T& insertItem)
+void ArrayList<T>::insertEnd(const T& insertItem)
 {
     if(currentSize == capacity)
         grow();
 
     list[currentSize] = insertItem;
     currentSize++;
+}
+
+template <class T>
+T ArrayList<T>::removeEnd()
+{
+    if(currentSize == 0) {
+        string msg = "removeEnd on empty list";
+        throw out_of_range(msg);
+    }
+
+    T end = list[currentSize - 1];
+    currentSize--;
+    return end;
 }
 
 template <class T>
@@ -238,39 +246,6 @@ void ArrayList<T>::insertAt(int location, const T& insertItem)
     currentSize++;
 }
 
-
-template <class T>
-int ArrayList<T>::search(const T& searchItem) const
-{
-    for(int i = 0; i < currentSize; i++) {
-        if(list[i] == searchItem)
-            return i;
-    }
-    return -1; //not found
-}
-
-
-template <class T>
-void ArrayList<T>::sort() {
-    //Selection sort - only sort the elements being used
-    for(int i = 0; i < currentSize - 1; i++) {
-        //Assume first unsorted element is smallest
-        T currentMin = list[i];
-        int currentMinIndex = i;
-
-        //Look through rest of used array for smaller item
-        for(int j = i + 1; j < currentSize; j++) {
-            if(currentMin > list[j]) {
-                currentMin = list[j];
-                currentMinIndex = j;
-            }
-        }
-
-        //Swap smallest item with curent unsorted item
-        list[currentMinIndex] = list[i];
-        list[i] = currentMin;
-    }
-}
 
 //------------------------MEMBER OPERATORS------------------
 
