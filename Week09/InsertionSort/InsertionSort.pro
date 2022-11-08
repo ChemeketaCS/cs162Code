@@ -20,10 +20,11 @@ QMAKE_CXXFLAGS += -Winit-self
 QMAKE_CXXFLAGS += -Wshadow
 QMAKE_CXXFLAGS += -Wconversion
 
+
 #------------------------------
 
-SOURCES += main.cpp
+HEADERS += doctest.h \
+    sorts.h
 
-HEADERS += \
-    Node.h
-
+SOURCES += \
+    sortsTester.cpp
