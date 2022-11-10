@@ -6,10 +6,10 @@ using namespace std;
 int main() {
 
     ArrayList<char> letters;
-    letters.append('U');
-    letters.append('C');
-    letters.append('L');
-    letters.append('A');
+    letters.insertEnd('U');
+    letters.insertEnd('C');
+    letters.insertEnd('L');
+    letters.insertEnd('A');
     cout << letters << endl;
 
     cout << "Attempting to copy" << endl;
@@ -20,8 +20,7 @@ int main() {
     cout << "Letters2: " << letters2 << endl;
 
     cout << "Changing Letters2..." << endl;
-    letters[-1] = 'G';
-    letters[3] = 'Y';
+    letters2[1] = 'G';
 
     cout << " Letters: " << letters << endl;
     cout << "Letters2: " << letters2 << endl;

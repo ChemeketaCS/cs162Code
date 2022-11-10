@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <exception>
 
 using namespace std;
 
@@ -14,15 +15,22 @@ using namespace std;
 template <class T>
 class ArrayList {
 public:
+    //Initial capacity of 10
     ArrayList();
+
+    //Copy and delete
     ArrayList(const ArrayList<T>& otherList);
     ArrayList<T>& operator=(const ArrayList<T>& other);
     ~ArrayList();
 
-    int size() const;
 
     //Insert item at end of list
-    void append(const T& newItem);
+    void insertEnd(const T& newItem);
+
+    //Remove item from end of list
+    T removeEnd();
+
+    int size() const;
 
     T get(int location) const;
 
@@ -143,7 +151,7 @@ void ArrayList<T>::grow()
 
 
 template <class T>
-void ArrayList<T>::append(const T& insertItem)
+void ArrayList<T>::insertEnd(const T& insertItem)
 {
     if(currentSize == capacity)
         grow();
@@ -152,12 +160,27 @@ void ArrayList<T>::append(const T& insertItem)
     currentSize++;
 }
 
+
+template <class T>
+T ArrayList<T>::removeEnd()
+{
+    if(currentSize == 0) {
+        string msg = "removeEnd on empty list";
+        throw out_of_range(msg);
+    }
+
+    T end = list[currentSize - 1];
+    currentSize--;
+    return end;
+}
+
 template <class T>
 T ArrayList<T>::get(int location) const
 {
     if(location < 0 || location >= currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in get: " + to_string(location)
+                + " with size " + to_string(currentSize);
+        throw out_of_range(msg);
     }
 
     return list[location];
@@ -167,8 +190,9 @@ template <class T>
 void ArrayList<T>::set(int location, const T& repItem)
 {
     if(location < 0 || location >= currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in set: " + to_string(location)
+                + " with size " + to_string(currentSize);
+        throw out_of_range(msg);
     }
 
     list[location] = repItem;
@@ -178,11 +202,8 @@ void ArrayList<T>::set(int location, const T& repItem)
 template <class T>
 void ArrayList<T>::clear()
 {
-    //Change logical siz of list to 0...
-    //don't actually have to erase anything
     currentSize = 0;
 }
-
 
 
 template<typename T>
@@ -203,12 +224,14 @@ string ArrayList<T>::toString() const
     return output.str();
 }
 
+
 template <class T>
 void ArrayList<T>::removeAt(int location)
 {
     if(location < 0 || location >= currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in removeAt: " + to_string(location)
+                + " with size " + to_string(currentSize);
+        throw out_of_range(msg);
     }
 
     //Shift everyone after location to left "remove" the item
@@ -220,12 +243,14 @@ void ArrayList<T>::removeAt(int location)
     currentSize--;
 }
 
+
 template <class T>
 void ArrayList<T>::insertAt(int location, const T& insertItem)
 {
     if(location < 0 || location > currentSize) {
-        cout << "Bad index " << location << ", quiting..." << endl;
-        exit(0);
+        string msg = "Bad index in insertAt: " + to_string(location)
+                + " with size " + to_string(currentSize);
+        throw out_of_range(msg);
     }
 
     //Check to see if need more room...
@@ -254,29 +279,5 @@ int ArrayList<T>::search(const T& searchItem) const
     }
     return -1; //not found
 }
-
-
-template <class T>
-void ArrayList<T>::sort() {
-    //Selection sort - only sort the elements being used
-    for(int i = 0; i < currentSize - 1; i++) {
-        //Assume first unsorted element is smallest
-        T currentMin = list[i];
-        int currentMinIndex = i;
-
-        //Look through rest of used array for smaller item
-        for(int j = i + 1; j < currentSize; j++) {
-            if(currentMin > list[j]) {
-                currentMin = list[j];
-                currentMinIndex = j;
-            }
-        }
-
-        //Swap smallest item with curent unsorted item
-        list[currentMinIndex] = list[i];
-        list[i] = currentMin;
-    }
-}
-
 
 #endif // ARRAYLIST_H
