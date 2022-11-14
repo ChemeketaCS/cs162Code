@@ -32,6 +32,8 @@ string to_string(const vector<T>& vec) {
  * @return new sorted vector containing all items from both 1 and 2
  *
  * vec1 and vec2 will remain unmodified by this function
+ * Given [1, 5, 6] and [2, 3, 7, 8], should return
+ * A new vector with [1, 2, 3, 5, 6, 7, 8]
  */
 template <typename T>
 vector<T> merge(const vector<T>& vec1, const vector<T>& vec2) {
@@ -59,7 +61,7 @@ vector<T> slice(const vector<T>& vec, size_t startLoc, size_t endLoc) {
 }
 
 /**
- * @brief mergeSort Recursive merge sort
+ * @brief Merge sorts vector in ascending order (smallest value first)
  * @param vec Vector to sort - will be modified
  */
 template <typename T>

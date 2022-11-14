@@ -25,12 +25,14 @@ string to_string(const vector<T>& vec) {
 
 
 /**
- * @brief slideToPosition
+ * @brief Slides an item in the vector to its left until it reaches the
+ *          start of the vector or is < the item to its left
  * @param vec vector to reorder. Elements must be comparable using <
  * @param index starting index of item to slide into position
  *
- * The item at the indicated index should swap its way to the left until
- * it reaches the start of the vector or the item to its left is less than it
+ * Example: given this vector: [10, 20, 40, 15, 30, 5] and the index 3 (15)
+ * the 15 would slide past the 40 and 20 but then stop, giving
+ * [10, 15, 20, 40, 30, 5]
  */
 template <typename T>
 void slideToPosition(vector<T>& vec, size_t index) {
@@ -39,8 +41,10 @@ void slideToPosition(vector<T>& vec, size_t index) {
 
 
 /**
- * @brief insertionSort
+ * @brief Do an insertion sort in ascending order (smallest value first)
  * @param vec vector to sort. Elements must be comparable using <
+ *
+ * Should use slideToPosition as helper
  */
 template <typename T>
 void insertionSort(vector<T>& vec) {
