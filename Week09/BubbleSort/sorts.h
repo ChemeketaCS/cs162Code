@@ -24,10 +24,10 @@ string to_string(const vector<T>& vec) {
 }
 
 
-///// Verbose, unoptimized bubleSort
+///// Verbose, basic bubleSort
 //template <typename T>
 //void bubbleSort(vector<T>& vec) {
-//    for(size_t i = 0; i < vec.size() - 1; i++) {
+//    for(size_t i = 0; i < vec.size(); i++) {
 //        cout << to_string(vec) << endl;
 //        for(size_t j = 0; j < vec.size() - 1; j++) {
 //            cout << "Checking " << vec.at(j) << " and " << vec.at(j + 1) << endl;
@@ -41,12 +41,12 @@ string to_string(const vector<T>& vec) {
 //    }
 //}
 
-///// Verbose, optimized bubleSort
+///// Verbose, efficient bubleSort
 //template <typename T>
 //void bubbleSort(vector<T>& vec) {
-//    for(size_t i = 0; i < vec.size() - 1; i++) {
+//    for(size_t i = 1; i < vec.size(); i++) {
 //        cout << to_string(vec) << endl;
-//        for(size_t j = 0; j < vec.size() - 1 - i; j++) {
+//        for(size_t j = 0; j < vec.size() - i; j++) {
 //            cout << "Checking " << vec.at(j) << " and " << vec.at(j + 1) << endl;
 //            if(vec.at(j) > vec.at(j + 1)) {
 //                cout << " -Swapping " << vec.at(j) << " and " << vec.at(j + 1) << endl;
@@ -58,16 +58,47 @@ string to_string(const vector<T>& vec) {
 //    }
 //}
 
-/// Optimized bubleSort
+/// Basic bubleSort
+//template <typename T>
+//void bubbleSort(vector<T>& vec) {
+//    for(size_t i = 0; i < vec.size(); i++) {
+//        for(size_t j = 0; j < vec.size() - 1; j++) {
+//            if(vec.at(j) > vec.at(j + 1)) {
+//                swap(vec.at(j), vec.at(j + 1));
+//            }
+//        }
+//    }
+//}
+
+///// Efficient bubleSort
+//template <typename T>
+//void bubbleSort(vector<T>& vec) {
+//    for(size_t i = 1; i < vec.size(); i++) {
+//        //i indicates how many items at end are sorted. Do not need to visit those
+//        for(size_t j = 0; j < vec.size() - i; j++) {
+//            if(vec.at(j) > vec.at(j + 1)) {
+//                swap(vec.at(j), vec.at(j + 1));
+//            }
+//        }
+//    }
+//}
+
+/// Adaptive bubleSort
 template <typename T>
 void bubbleSort(vector<T>& vec) {
-    for(size_t i = 0; i < vec.size() - 1; i++) {
-        for(size_t j = 0; j < vec.size() - 1 - i; j++) {
+    for(size_t i = 1; i < vec.size(); i++) {
+        bool madeSwap = false;
+        for(size_t j = 0; j < vec.size() - i; j++) {
             if(vec.at(j) > vec.at(j + 1)) {
                 swap(vec.at(j), vec.at(j + 1));
+                madeSwap = true;
             }
         }
+        if(!madeSwap)
+            break;
     }
 }
+
+
 
 #endif // SORTS_H
