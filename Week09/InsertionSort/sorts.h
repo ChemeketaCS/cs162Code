@@ -26,7 +26,7 @@ string to_string(const vector<T>& vec) {
 
 /**
  * @brief Slides an item in the vector to its left until it reaches the
- *          start of the vector or is < the item to its left
+ *          start of the vector or the item to its left is < than it
  * @param vec vector to reorder. Elements must be comparable using <
  * @param index starting index of item to slide into position
  *
