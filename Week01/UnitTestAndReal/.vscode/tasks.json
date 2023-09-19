@@ -1,0 +1,43 @@
+{
+    "tasks": [
+        {
+            "label": "make program",
+            "type": "shell",
+            "command": "make program",
+            "windows": {
+                "command": "mingw32-make program"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "revealProblems":"onProblem"
+            },
+        },
+        {
+            "label": "make tests",
+            "type": "shell",
+            "command": "make tests",
+            "windows": {
+                "command": "mingw32-make tests"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "revealProblems":"onProblem"
+            },
+        }
+    ],
+    "version": "2.0.0"
+}

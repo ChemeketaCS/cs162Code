@@ -14,6 +14,9 @@ int main()
 {
     //Get an array of 5 locations
     Location* locationList = makeLocationList(5);
-    cout << locationList[2].getX();
+    cout << locationList[4].getX();
+
+    delete [] locationList;
+
 }
 
