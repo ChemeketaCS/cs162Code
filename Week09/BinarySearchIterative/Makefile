@@ -6,7 +6,7 @@ STANDARDS = -pedantic -pedantic-errors
 TESTER_NAME = tests.exe
 
 TEST_FILES = *.cpp
-INCLUDE_DIRS = .
+INCLUDE_DIRS = . ../..
 SHARED_FILES = 
 
 all: tests
