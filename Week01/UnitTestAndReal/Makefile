@@ -6,10 +6,10 @@ STANDARDS = -pedantic -pedantic-errors
 PROGRAM_NAME = program.exe
 TESTER_NAME = tests.exe
 
-PROGRAM_FILES = Circle.cpp
-TEST_FILES = CircleTests.cpp
+PROGRAM_FILES = main.cpp
+TEST_FILES = CircleTester.cpp
 INCLUDE_DIRS = . 
-SHARED_FILES = 
+SHARED_FILES = Circle.cpp
 
 all: program tests
 
