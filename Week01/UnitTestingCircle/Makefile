@@ -5,9 +5,9 @@ WARNINGS = -Wall -Wextra -Wmissing-include-dirs -Wfloat-equal -Wredundant-decls 
 STANDARDS = -pedantic -pedantic-errors
 TESTER_NAME = tests.exe
 
-TEST_FILES = *.cpp
+TEST_FILES = CircleTester.cpp
 INCLUDE_DIRS = .
-SHARED_FILES = 
+SHARED_FILES = Circle.cpp
 
 all: tests
 
