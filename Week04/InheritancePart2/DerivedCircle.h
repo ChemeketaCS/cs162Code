@@ -6,7 +6,7 @@ class Circle : public GeometricObject
 {
 public:
     //Don't need virtual here... but nice
-    virtual string toString() const;
+    virtual string toString() const override;
 
     Circle();
     Circle(double);

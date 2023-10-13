@@ -13,9 +13,10 @@ public:
     void setWidth(double);
     double getHeight() const;
     void setHeight(double);
-    double getArea() const;
-    double getPerimeter() const;
-    string toString() const;
+    
+    virtual double getArea() const override;
+    virtual double getPerimeter() const override;
+    virtual string toString() const override;
 
 private:
     double width;

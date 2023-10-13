@@ -19,7 +19,8 @@ public:
     void setHeight(double);
     double getArea() const;
     double getPerimeter() const;
-    virtual string toString() const;
+    
+    virtual string toString() const override;
 
 private:
     double width;

@@ -16,9 +16,15 @@ int main()
 {
     GeometricObject shape;
     Circle c1;
+    Rectangle r1;
+
+    cout << shape.toString();
+    cout << c1.toString();
+    cout << r1.toString();
 
     printObject(shape);
     printObject(c1);
+    printObject(r1);
 
     ////--------------------Casting & Pointers--------------------
 //    Circle c2(5);

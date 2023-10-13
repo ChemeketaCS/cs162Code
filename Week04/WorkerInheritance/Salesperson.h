@@ -11,10 +11,10 @@ public:
     Salesperson(std::string nameValue, double salaryValue, double totalSalesValue);
 
     //provide a better version of getPay
-    virtual double getPay() const;
+    virtual double getPay() const override;
 
     //provide a better version of getInfo
-    virtual std::string getInfo() const;
+    virtual std::string getInfo() const override;
 
 private:
     //already have salary from Salesperson

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ public:
         radius = r;
     }
 
-    void print() const {
+    virtual void print() const override {
         cout << "A circle with radius: "
              << radius << endl;
     }
@@ -46,9 +47,8 @@ public:
         name = nameValue;
     }
 
-    void print() const {
-        cout << "A person: "
-             << name << endl;
+    virtual void print() const override {
+        cout << "A person: " << name << endl;
     }
 };
 

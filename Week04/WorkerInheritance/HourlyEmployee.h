@@ -11,10 +11,10 @@ public:
                    double hourlyRateValue);
 
     //provide a better version of getPay
-    virtual double getPay() const;
+    virtual double getPay() const override;
 
     //provide a better version of getInfo
-    virtual std::string getInfo() const;
+    virtual std::string getInfo() const override;
 
 private:
     double hoursWorked;
