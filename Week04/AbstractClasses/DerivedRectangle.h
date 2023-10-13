@@ -13,7 +13,8 @@ public:
     void setWidth(double);
     double getHeight() const;
     void setHeight(double);
-    
+
+    //These three are overriding GeometricObject functions
     virtual double getArea() const override;
     virtual double getPerimeter() const override;
     virtual string toString() const override;
