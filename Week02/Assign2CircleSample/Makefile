@@ -1,15 +1,26 @@
-.PHONY: all tests
-CPP = g++
-CPP_FLAGS = -std=c++17 -g
-WARNINGS = -Wall -Wextra -Wmissing-include-dirs -Wfloat-equal -Wredundant-decls -Winit-self -Wshadow -Wconversion
-STANDARDS = -pedantic -pedantic-errors
-TESTER_NAME = tests.exe
+# compiler options
+CXXFLAGS = -g -Wall -Wextra
+CXXFLAGS += -std=c++17 -pedantic -pedantic-errors
+CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wno-deprecated-copy
 
+# list your .h files here
+HEADERS = Circle.h Point.h
+
+# list .cpp files here according to main program, tests, or both
+PROGRAM_FILES = main.cpp
 TEST_FILES = CircleTester.cpp
-INCLUDE_DIRS = .
 SHARED_FILES = Circle.cpp Point.cpp
 
-all: tests
+.PHONY: all
+all: program.exe tests.exe
 
-tests:
-	-$(CPP) $(CPP_FLAGS) $(STANDARDS) $(WARNINGS) -I $(INCLUDE_DIRS) -o $(TESTER_NAME) $(SHARED_FILES) $(TEST_FILES)
+program.exe: $(PROGRAM_FILES) $(SHARED_FILES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(PROGRAM_FILES) $(SHARED_FILES) -o $@
+
+tests.exe: $(TEST_FILES) $(SHARED_FILES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(TEST_FILES) $(SHARED_FILES) -o $@
+
+.PHONY: clean
+clean:
+	rm -f program.exe
+	rm -f tests.exe

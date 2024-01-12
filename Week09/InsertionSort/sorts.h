@@ -6,23 +6,21 @@
 #include <vector>
 using namespace std;
 
-
-///Easily turn a vector into a string
-template <typename T>
+/// Easily turn a vector into a string
+template<typename T>
 string to_string(const vector<T>& vec) {
-    string result = "[";
-    //All but last
-    for(size_t i = 0; i < vec.size() - 1; i++) {
-        result += to_string(vec.at(i)) + ", ";
-    }
-    //Last, if exists
-    if(vec.size() > 0)
-        result += to_string(vec.at(vec.size() - 1));
+  string result = "[";
+  // All but last
+  for (size_t i = 0; i < vec.size() - 1; i++) {
+    result += to_string(vec.at(i)) + ", ";
+  }
+  // Last, if exists
+  if (vec.size() > 0)
+    result += to_string(vec.at(vec.size() - 1));
 
-    result += "]";
-    return result;
+  result += "]";
+  return result;
 }
-
 
 /**
  * @brief Slides an item in the vector to its left until it reaches the
@@ -34,11 +32,10 @@ string to_string(const vector<T>& vec) {
  * the 15 would slide past the 40 and 20 but then stop, giving
  * [10, 15, 20, 40, 30, 5]
  */
-template <typename T>
+template<typename T>
 void slideToPosition(vector<T>& vec, size_t index) {
-    //TODO - FIXME
+  // TODO - FIXME
 }
-
 
 /**
  * @brief Do an insertion sort in ascending order (smallest value first)
@@ -46,10 +43,9 @@ void slideToPosition(vector<T>& vec, size_t index) {
  *
  * Should use slideToPosition as helper
  */
-template <typename T>
+template<typename T>
 void insertionSort(vector<T>& vec) {
-    //TODO - FIXME
+  // TODO - FIXME
 }
-
 
 #endif // SORTS_H

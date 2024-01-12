@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/program.exe",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "make program",
+            "preLaunchTask": "make program.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -31,7 +31,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/program.exe",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "make program",
+            "preLaunchTask": "make program.exe",
         },
         {
             "name": "Run Tests",
@@ -39,7 +39,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/tests.exe",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "make tests",
+            "preLaunchTask": "make tests.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -60,7 +60,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/tests.exe",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "make tests",
+            "preLaunchTask": "make tests.exe",
         },
     ]
 }

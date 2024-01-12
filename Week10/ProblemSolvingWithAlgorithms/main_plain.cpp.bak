@@ -1,0 +1,142 @@
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+using namespace std;
+
+struct BingoCell {
+  int num = 0;
+  bool marked = false;
+};
+
+struct BingoBoard {
+  BingoCell squares[5][5];
+
+  string toString() {
+    stringstream s;
+    for (int r = 0; r < 5; r++) {
+      for (int c = 0; c < 5; c++) {
+        s << squares[r][c].num;
+        if (squares[r][c].marked)
+          s << "X";
+        s << "\t";
+      }
+      s << endl;
+    }
+    return s.str();
+  }
+};
+
+BingoBoard readBoard(istream& in) {
+  BingoBoard b;
+  for (int r = 0; r < 5; r++) {
+    for (int c = 0; c < 5; c++) {
+      in >> b.squares[r][c].num;
+    }
+  }
+  return b;
+}
+
+// See if given board has won
+bool isWinner(const BingoBoard& board) {
+  // Check rows
+  for (int r = 0; r < 5; r++) {
+    bool winner = true;
+    for (int c = 0; c < 5; c++) {
+      if (board.squares[r][c].marked == false) {
+        winner = false;
+        break;
+      }
+    }
+    if (winner)
+      return true;
+  }
+
+  // Check cols
+  for (int c = 0; c < 5; c++) {
+    bool winner = true;
+    for (int r = 0; r < 5; r++) {
+      if (board.squares[r][c].marked == false) {
+        winner = false;
+        break;
+      }
+    }
+    if (winner)
+      return true;
+  }
+
+  return false;
+}
+
+// Find which board is winner
+int getWinner(vector<BingoBoard>& boards) {
+  for (int b = 0; b < static_cast<int>(boards.size()); b++) {
+    bool wins = isWinner(boards[b]);
+    if (wins)
+      return b;
+  }
+  return -1;
+}
+
+// Mark given number on all boards
+void markBoards(vector<BingoBoard>& boards, int num) {
+  for (size_t b = 0; b < boards.size(); b++) {
+    bool marked = false;
+    for (int r = 0; r < 5 && !marked; r++) {
+      for (int c = 0; c < 5 && !marked; c++) {
+        if (boards[b].squares[r][c].num == num) {
+          boards[b].squares[r][c].marked = true;
+          marked = true;
+        }
+      }
+    }
+  }
+}
+
+// Find total of all unmarked squares on given board
+int getSumOfUnmarked(const BingoBoard& board) {
+  int sum = 0;
+  for (int r = 0; r < 5; r++) {
+    for (int c = 0; c < 5; c++) {
+      if (!board.squares[r][c].marked)
+        sum += board.squares[r][c].num;
+    }
+  }
+  return sum;
+}
+
+int main() {
+  ifstream in("input.txt");
+  if (!in)
+    cout << "Error opening file - Check working directory";
+
+  // Get first line into stringstream so we can parse it using getline later
+  string firstLine;
+  getline(in, firstLine);
+  stringstream firstStream(firstLine);
+
+  // Read in all boards
+  vector<BingoBoard> boards;
+  while (!in.eof()) {
+    BingoBoard b = readBoard(in);
+    boards.push_back(b);
+  }
+
+  // Start reading numbers until we find a winner
+  int winningBoardNum = -1;
+  while (winningBoardNum == -1) {
+    int curNum = 0;
+    firstStream >> curNum;
+    markBoards(boards, curNum);
+    winningBoardNum = getWinner(boards);
+  }
+
+  cout << boards[winningBoardNum].toString();
+  cout << "-------------" << endl;
+
+  int sum = getSumOfUnmarked(boards[winningBoardNum]);
+
+  cout << sum << endl;
+}

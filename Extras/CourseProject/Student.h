@@ -7,38 +7,37 @@
 
 using namespace std;
 
-class Student
-{
+class Student {
 public:
-    Student(string name, int numberOfCourses);
+  Student(string name, int numberOfCourses);
 
-    //copy constructor
-    Student(const Student& other);
+  // copy constructor
+  Student(const Student& other);
 
-    //assignment operator
-    Student& operator=(const Student& other);
+  // assignment operator
+  Student& operator=(const Student& other);
 
-    //destructor
-    ~Student();
+  // destructor
+  ~Student();
 
-    string getName() const;
-    void setName(string val);
+  string getName() const;
+  void setName(string val);
 
-    void addClass(Course* theCourse);
+  void addClass(Course* theCourse);
 
-    string getInfo() const;
+  string getInfo() const;
 
 private:
-    string name;
+  string name;
 
-    //Stores a dynamic array contianing
-    //  pointers to the Courses this Student is taking
-    //  We own the memory for dynamic array,
-    //  but not the Course*s it contains
-    Course** courses;
+  // Stores a dynamic array contianing
+  //   pointers to the Courses this Student is taking
+  //   We own the memory for dynamic array,
+  //   but not the Course*s it contains
+  Course** courses;
 
-    int numCourses;      //how many courses this student is taking
-    int nextCourseIndex; //what slot next course goes in
+  int numCourses;      // how many courses this student is taking
+  int nextCourseIndex; // what slot next course goes in
 };
 
 #endif // STUDENT_H

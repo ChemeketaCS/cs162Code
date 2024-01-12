@@ -1,0 +1,27 @@
+// Division by zero.
+
+#include <cassert>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int dividend, divisor, quotient;
+
+  cout << "Enter the dividend: ";
+  cin >> dividend;
+  cout << endl;
+
+  cout << "Enter the divisor: ";
+  cin >> divisor;
+  cout << endl;
+
+  // Blow up program if about to divide by 0
+  assert(divisor != 0);
+
+  quotient = dividend / divisor;
+
+  cout << quotient;
+
+  return 0;
+}

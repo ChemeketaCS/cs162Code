@@ -1,15 +1,17 @@
-.PHONY: all tests
-CPP = g++
-CPP_FLAGS = -std=c++17 -g
-WARNINGS = -Wall -Wextra -Wmissing-include-dirs -Wfloat-equal -Wredundant-decls -Winit-self -Wshadow -Wconversion
-STANDARDS = -pedantic -pedantic-errors
-TESTER_NAME = tests.exe
+# compiler options
+CXXFLAGS = -g -Wall -Wextra
+CXXFLAGS += -std=c++17 -pedantic -pedantic-errors
+CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wno-deprecated-copy
 
+HEADERS = *.h
 TEST_FILES = *.cpp
-INCLUDE_DIRS = . ../..
-SHARED_FILES = 
 
-all: tests
+.PHONY: all
+all: tests.exe
 
-tests:
-	-$(CPP) $(CPP_FLAGS) $(STANDARDS) $(WARNINGS) -I $(INCLUDE_DIRS) -o $(TESTER_NAME) $(SHARED_FILES) $(TEST_FILES)
+tests.exe: $(TEST_FILES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(TEST_FILES) -o $@
+
+.PHONY: clean
+clean:
+	rm -f tests.exe

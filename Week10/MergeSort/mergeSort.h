@@ -6,23 +6,21 @@
 #include <vector>
 using namespace std;
 
-
-///Easily turn a vector into a string
-template <typename T>
+/// Easily turn a vector into a string
+template<typename T>
 string to_string(const vector<T>& vec) {
-    string result = "[";
-    //All but last
-    for(size_t i = 0; i < vec.size() - 1; i++) {
-        result += to_string(vec.at(i)) + ", ";
-    }
-    //Last, if exists
-    if(vec.size() > 0)
-        result += to_string(vec.at(vec.size() - 1));
+  string result = "[";
+  // All but last
+  for (size_t i = 0; i < vec.size() - 1; i++) {
+    result += to_string(vec.at(i)) + ", ";
+  }
+  // Last, if exists
+  if (vec.size() > 0)
+    result += to_string(vec.at(vec.size() - 1));
 
-    result += "]";
-    return result;
+  result += "]";
+  return result;
 }
-
 
 /**
  * @brief merge Combine all values from two sorted vectors, in order,
@@ -35,13 +33,13 @@ string to_string(const vector<T>& vec) {
  * Given [1, 5, 6] and [2, 3, 7, 8], should return
  * A new vector with [1, 2, 3, 5, 6, 7, 8]
  */
-template <typename T>
+template<typename T>
 vector<T> merge(const vector<T>& vec1, const vector<T>& vec2) {
-    vector<T> newVec;
+  vector<T> newVec;
 
-    //TODO - FIXME
+  // TODO - FIXME
 
-    return newVec;
+  return newVec;
 }
 
 /**
@@ -53,21 +51,21 @@ vector<T> merge(const vector<T>& vec1, const vector<T>& vec2) {
  *
  * A slice done with startLoc = 1 and endLoc = 4 should copy indexes 1-3
  */
-template <typename T>
+template<typename T>
 vector<T> slice(const vector<T>& vec, size_t startLoc, size_t endLoc) {
-    vector<T> newVec;
-    //TODO - FIXME
-    return newVec;
+  vector<T> newVec;
+  // TODO - FIXME
+  return newVec;
 }
 
 /**
  * @brief Merge sorts vector in ascending order (smallest value first)
  * @param vec Vector to sort - will be modified
  */
-template <typename T>
+template<typename T>
 void mergeSort(vector<T>& vec) {
-    //TODO - FIXME
-    //Make sure to modify vector, not return a new one
+  // TODO - FIXME
+  // Make sure to modify vector, not return a new one
 }
 
 #endif // MERGESORT_H

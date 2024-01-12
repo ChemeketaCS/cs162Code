@@ -1,26 +1,23 @@
 #ifndef DERIVEDCYLINDER_H
 #define DERIVEDCYLINDER_H
 
-
 #include "Circle.h"
 
-class DerivedCylinder : public Circle
-{
+class DerivedCylinder: public Circle {
 public:
-    DerivedCylinder(double radius, double theHeight);
-    DerivedCylinder(double radius, double theHeight, double x, double y);
-    DerivedCylinder(const Circle& theBase, double theHeight);
+  DerivedCylinder(double radius, double theHeight);
+  DerivedCylinder(double radius, double theHeight, double x, double y);
+  DerivedCylinder(const Circle& theBase, double theHeight);
 
-    double getSurfaceArea() const;
-    double getVolume() const;
+  double getSurfaceArea() const;
+  double getVolume() const;
 
-    Circle getBase() const;
+  Circle getBase() const;
 
-    void print() const;
+  void print() const;
 
 private:
-    double height;
+  double height;
 };
-
 
 #endif // DERIVEDCYLINDER_H

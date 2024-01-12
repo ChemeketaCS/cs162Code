@@ -1,0 +1,27 @@
+// Checking division by zero.
+#include <iostream>
+
+#include <stdexcept>
+using namespace std;
+
+int main() {
+  string input;
+  cout << "Enter a string: ";
+  cin >> input;
+  cout << endl;
+
+  int startLoc = -1, endLoc = -1;
+  cout << "Enter start, end characters of substring: ";
+  cin >> startLoc >> endLoc;
+  cout << endl;
+
+  try {
+    // string.substring throws out_of_range exception on bad index
+    string part = input.substr(startLoc, (endLoc - startLoc + 1));
+    cout << part << endl;
+  } catch (out_of_range& error) {
+    cout << "You used a bad index in: " << error.what() << endl;
+  }
+
+  return 0;
+}

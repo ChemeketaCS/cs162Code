@@ -1,0 +1,30 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  vector<int> vec{12, 6, 42, 6, 13, 18, 6};
+
+  for (auto value : vec)
+    cout << value << " ";
+  cout << endl;
+
+  // Move good data to the left
+  //  get iterator to end of good data
+  auto newEnd = remove(vec.begin(), vec.end(), 6);
+
+  for (auto value : vec)
+    cout << value << " ";
+  cout << endl;
+
+  // Chop from end of good data to end of vector
+  vec.erase(newEnd, vec.end());
+
+  for (auto value : vec)
+    cout << value << " ";
+  cout << endl;
+
+  return 0;
+}

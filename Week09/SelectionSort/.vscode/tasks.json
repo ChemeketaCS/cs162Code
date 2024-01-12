@@ -1,11 +1,11 @@
 {
     "tasks": [
         {
-            "label": "make tests",
+            "label": "make tests.exe",
             "type": "shell",
-            "command": "make tests",
+            "command": "make tests.exe",
             "windows": {
-                "command": "mingw32-make tests"
+                "command": "mingw32-make tests.exe"
             },
             "group": {
                 "kind": "build",
