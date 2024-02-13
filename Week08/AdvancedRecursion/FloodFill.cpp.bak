@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+const int MAZE_SIZE = 10;
+
+void printMaze(char curMaze[MAZE_SIZE][MAZE_SIZE]) {
+  // column headers
+  cout << " ";
+  for (int c = 0; c < MAZE_SIZE; c++)
+    cout << c;
+  cout << endl;
+
+  for (int r = 0; r < MAZE_SIZE; r++) {
+    cout << r; // row header
+    for (int c = 0; c < MAZE_SIZE; c++) {
+      cout << curMaze[r][c];
+    }
+    cout << endl;
+  }
+  cout << endl;
+  cout << endl;
+}
+
+void floodFill(char picture[MAZE_SIZE][MAZE_SIZE], int startRow, int startCol) {
+  if (startRow < 0 || startCol < 0 || startRow >= MAZE_SIZE
+      || startCol >= MAZE_SIZE) {
+    return; // went out of bounds - done
+  }
+  if (picture[startRow][startCol] != ' ') {
+    return; // hit a filled square - done
+  }
+
+  // no need to copy picture - we want to change the original
+  picture[startRow][startCol] = '.';
+
+  printMaze(picture); // show what it looks like now
+
+  // now fill all the neighbor cells
+  floodFill(picture, startRow, startCol - 1); // left
+  floodFill(picture, startRow, startCol + 1); // right
+  floodFill(picture, startRow - 1, startCol); // up
+  floodFill(picture, startRow + 1, startCol); // down
+}
+
+int main() {
+  char picture[MAZE_SIZE][MAZE_SIZE] = {
+      {'#', '#', '#', '#', ' ', ' ', '#', '#', '#', '#'},
+      {'#', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', '#'},
+      {'#', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', '#'},
+      {'#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' '},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#'},
+      {' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#'},
+      {' ', ' ', ' ', '#', '#', '#', '#', '#', ' ', '#'},
+      {' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'},
+      {' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'},
+      {' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#'}};
+
+  printMaze(picture);
+
+  cout << "Enter row & col with space between:" << endl;
+  int row = 0;
+  int col = 0;
+  cin >> row >> col;
+
+  floodFill(picture, row, col);
+
+  return 0;
+}

@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int total = 0;
+// this is not going to end well...
+int oops(int n) {
+  cout << total++ << " ";
+  if (n == 0)
+    return 1;
+  else
+    return oops(n);
+}
+
+int main() {
+  oops(10);
+
+  return 0;
+}

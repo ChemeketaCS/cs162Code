@@ -1,3 +1,6 @@
 {
-    "lldb.dereferencePointers": false
+    "lldb.dereferencePointers": false,
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "debug.onTaskErrors": "showErrors"
 }

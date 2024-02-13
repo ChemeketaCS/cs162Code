@@ -1,78 +1,65 @@
 #include "DerivedCircle.h"
 
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
 // Construct a default circle object
-Circle::Circle()
-    : GeometricObject()
-{
-    cout << "Making a circle..." << endl;
-    radius = 1;
+Circle::Circle(): GeometricObject() {
+  cout << "Making a circle..." << endl;
+  radius = 1;
 }
 
 // Construct a circle object with specified radius
-Circle::Circle(double radius)
-    : GeometricObject()
-{
-    cout << "Making a circle..." << endl;
-    setRadius(radius);
+Circle::Circle(double radius): GeometricObject() {
+  cout << "Making a circle..." << endl;
+  setRadius(radius);
 }
 
 // Construct a circle object with specified radius,
 //   Use color and fill to init GeometricObject part of self
-Circle::Circle(double theRadius, const string& color, bool filled)
-    : GeometricObject(color, filled), radius(theRadius)
-{
-    cout << "Making a circle..." << endl;
+Circle::Circle(double theRadius, const string& color, bool filled):
+    GeometricObject(color, filled), radius(theRadius) {
+  cout << "Making a circle..." << endl;
 }
 
 // Destruct a circle object
-Circle::~Circle()
-{
-    cout << "Destroying a circle..." << endl;
+Circle::~Circle() {
+  cout << "Destroying a circle..." << endl;
 }
 
 // Return the radius of this circle
-double Circle::getRadius() const
-{
-    return radius;
+double Circle::getRadius() const {
+  return radius;
 }
 
 // Set a new radius
-void Circle::setRadius(double radius)
-{
-    this->radius = (radius >= 0) ? radius : 0;
+void Circle::setRadius(double radius) {
+  this->radius = (radius >= 0) ? radius : 0;
 }
 
 // Return the area of this circle
-double Circle::getArea() const
-{
-    return radius * radius * 3.14159;
+double Circle::getArea() const {
+  return radius * radius * 3.14159;
 }
 
 // Return the perimeter of this circle
-double Circle::getPerimeter() const
-{
-    return 2 * radius * 3.14159;
+double Circle::getPerimeter() const {
+  return 2 * radius * 3.14159;
 }
 
 // Return the diameter of this circle
-double Circle::getDiameter() const
-{
-    return 2 * radius;
+double Circle::getDiameter() const {
+  return 2 * radius;
 }
 
 // Redefine the toString function
-string Circle::toString() const
-{
-    stringstream descriptor;
-    descriptor << "Circle object" << endl
-               << "   uses: " << GeometricObject::toString() << endl
-               << " -radius: " << getRadius() << endl
-               << " -area: " << getArea() << endl
-               << " -perimeter: " << getPerimeter();
+string Circle::toString() const {
+  stringstream descriptor;
+  descriptor << "Circle object" << endl
+             << "   uses: " << GeometricObject::toString() << endl
+             << " -radius: " << getRadius() << endl
+             << " -area: " << getArea() << endl
+             << " -perimeter: " << getPerimeter();
 
-    return descriptor.str();
+  return descriptor.str();
 }
-

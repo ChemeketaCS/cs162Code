@@ -1,72 +1,62 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 class IPrintable {
 public:
-    virtual void print() const = 0;
+  virtual void print() const = 0;
 };
-
 
 class GeometricObject {
 private:
-    string color;
+  string color;
+
 public:
-    GeometricObject(const string& colorVal) {
-        this->color = colorVal;
-    }
+  GeometricObject(const string& colorVal) {
+    this->color = colorVal;
+  }
 };
 
-
-class Circle : public GeometricObject,
-               public IPrintable
-{
+class Circle: public GeometricObject, public IPrintable {
 private:
-    double radius;
-public:
-    Circle(const string& name, double r)
-        : GeometricObject(name)
-    {
-        radius = r;
-    }
+  double radius;
 
-    void print() const {
-        cout << "A circle with radius: "
-             << radius << endl;
-    }
+public:
+  Circle(const string& name, double r): GeometricObject(name) {
+    radius = r;
+  }
+
+  virtual void print() const override {
+    cout << "A circle with radius: " << radius << endl;
+  }
 };
 
-
-
-class Person : public IPrintable {
+class Person: public IPrintable {
 private:
-    string name;
+  string name;
+
 public:
-    Person(const string& nameValue) {
-        name = nameValue;
-    }
+  Person(const string& nameValue) {
+    name = nameValue;
+  }
 
-    void print() const {
-        cout << "A person: "
-             << name << endl;
-    }
+  virtual void print() const override {
+    cout << "A person: " << name << endl;
+  }
 };
-
 
 void usePrinter(IPrintable& thing) {
-    thing.print();
+  thing.print();
 }
 
+int main() {
+  Circle c1("Blue", 5);
 
-int main()
-{
-    Circle c1("Blue", 5);
+  Person p1("Bob");
 
-    Person p1("Bob");
+  usePrinter(c1);
+  usePrinter(p1);
 
-    usePrinter(c1);
-    usePrinter(p1);
-
-    return 0;
+  return 0;
 }
-

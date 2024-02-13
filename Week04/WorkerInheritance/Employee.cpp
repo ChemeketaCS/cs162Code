@@ -2,16 +2,14 @@
 
 using namespace std;
 
-Employee::Employee(string nameValue)
-{
-    name = nameValue;
+Employee::Employee(string nameValue) {
+  name = nameValue;
 }
 
 string Employee::getName() const {
-    return name;
+  return name;
 }
 
-
 string Employee::getInfo() const {
-    return "Name: " + name + "\n";
+  return "Name: " + name + "\n";
 }

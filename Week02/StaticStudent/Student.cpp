@@ -1,26 +1,24 @@
 #include "Student.h"
 #include <iostream>
 
-
 Student::Student(const string& nameValue) {
-    name = nameValue;
+  name = nameValue;
 }
 
 void Student::print() {
-    cout << name << " is a " << mascot << endl;
+  cout << name << " is a " << mascot << endl;
 }
 
-//A method that is static can only access static variables
+// A method that is static can only access static variables
 void Student::setMascot(const string& newMascot) {
-   mascot = newMascot;
+  mascot = newMascot;
 }
 
-//A method that is static can only access
-//   static variables
+// A method that is static can only access
+//    static variables
 string Student::getMascot() {
-    return mascot;
+  return mascot;
 }
 
-
-//Initialize the static variable mascot
+// Initialize the static variable mascot
 string Student::mascot = "Storm";

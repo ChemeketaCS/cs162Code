@@ -1,29 +1,26 @@
-#include <iostream>
 #include "Student.h"
+#include <iostream>
 
 using namespace std;
 
+int main() {
+  Student s1("Bob");
+  Student s2("Jane");
 
-int main()
-{
-    Student s1("Bob");
-    Student s2("Jane");
+  s1.print();
+  s2.print();
 
-    s1.print();
-    s2.print();
+  // Change the mascot
+  s1.setMascot("Bruin");
 
-    //Change the mascot
-    s1.setMascot("Bruin");
+  s1.print();
+  s2.print();
 
-    s1.print();
-    s2.print();
+  // Call static function of class directly:
+  Student::getMascot();
 
-    //Call static function of class directly:
-    Student::getMascot();
+  // Change mascot directly through class
+  Student::setMascot("Trojan");
 
-    //Change mascot directly through class
-    Student::setMascot("Trojan");
-
-    return 0;
+  return 0;
 }
-

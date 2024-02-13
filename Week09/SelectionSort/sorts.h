@@ -6,22 +6,21 @@
 #include <vector>
 using namespace std;
 
-///Easily turn a vector into a string
-template <typename T>
+/// Easily turn a vector into a string
+template<typename T>
 string to_string(const vector<T>& vec) {
-    string result = "[";
-    //All but last
-    for(size_t i = 0; i < vec.size() - 1; i++) {
-        result += to_string(vec.at(i)) + ", ";
-    }
-    //Last, if exists
-    if(vec.size() > 0)
-        result += to_string(vec.at(vec.size() - 1));
+  string result = "[";
+  // All but last
+  for (size_t i = 0; i < vec.size() - 1; i++) {
+    result += to_string(vec.at(i)) + ", ";
+  }
+  // Last, if exists
+  if (vec.size() > 0)
+    result += to_string(vec.at(vec.size() - 1));
 
-    result += "]";
-    return result;
+  result += "]";
+  return result;
 }
-
 
 /**
  * @brief Finds the largest item in the vector at or after location index.
@@ -33,11 +32,10 @@ string to_string(const vector<T>& vec) {
  * we would find the 30 and swap it with the 20 resulting in
  * [40, 30, 15, 20, 5]
  */
-template <typename T>
+template<typename T>
 void placeLargestRemaining(vector<T>& vec, size_t index) {
-    //TODO - FIXME
+  // TODO - FIXME
 }
-
 
 /**
  * @brief So a selection sort in descending order (largest value first)
@@ -45,10 +43,9 @@ void placeLargestRemaining(vector<T>& vec, size_t index) {
  *
  * Should use placeLargestRemaining as a helper
  */
-template <typename T>
+template<typename T>
 void selectionSort(vector<T>& vec) {
-    //TODO - FIXME
+  // TODO - FIXME
 }
-
 
 #endif // SORTS_H

@@ -3,23 +3,22 @@
 
 #include "Circle.h"
 
-class Cylinder
-{
+class Cylinder {
 public:
-    Cylinder(double radius, double theHeight);
-    Cylinder(double radius, double theHeight, double x, double y);
-    Cylinder(const Circle& theBase, double theHeight);
+  Cylinder(double radius, double theHeight);
+  Cylinder(double radius, double theHeight, double x, double y);
+  Cylinder(const Circle& theBase, double theHeight);
 
-    double getSurfaceArea() const;
-    double getVolume() const;
+  double getSurfaceArea() const;
+  double getVolume() const;
 
-    Circle getBase() const;
+  Circle getBase() const;
 
-    void print() const;
+  void print() const;
 
 private:
-    Circle base;
-    double height;
+  Circle base;
+  double height;
 };
 
 #endif // CYLINDER_H

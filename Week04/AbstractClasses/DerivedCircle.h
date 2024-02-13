@@ -2,23 +2,21 @@
 #define CIRCLE_H
 #include "GeometricObject.h"
 
-class Circle : public GeometricObject
-{
+class Circle: public GeometricObject {
 public:
-    //Don't need virtual here... but nice
-    virtual string toString() const;
+  Circle();
+  Circle(double);
+  Circle(double radius, const string& color, bool filled);
+  double getRadius() const;
+  void setRadius(double);
 
-    Circle();
-    Circle(double);
-    Circle(double radius, const string& color, bool filled);
-    double getRadius() const;
-    void setRadius(double);
-    double getArea() const;
-    double getPerimeter() const;
-    double getDiameter() const;
+  // These three are overriding GeometricObject functions
+  virtual double getArea() const override;
+  virtual double getPerimeter() const override;
+  virtual string toString() const override;
 
 private:
-    double radius;
+  double radius;
 };
 
 #endif

@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+int digitCount(int number) {
+  if (number < 10)
+    return 1;
+  else
+    return 1 + digitCount(number / 10);
+}
+
+int arraySum(int nums[], int size) {
+  if (size == 0)
+    return 0;
+  else {
+    int curValue = nums[size - 1];
+    return curValue + arraySum(nums, size - 1);
+  }
+}
+
+bool isPalindrome(const string& s) {
+  if (s.size() <= 1) // Base case
+    return true;
+  else if (s[0] != s[s.size() - 1]) // Base case
+    return false;
+  else
+    return isPalindrome(s.substr(1, s.size() - 2));
+}
+
+bool isPalindromeHelper(const string& s, int low, int high) {
+  if (high <= low) // Base case
+    return true;
+  else if (s[low] != s[high]) // Base case
+    return false;
+  else
+    return isPalindromeHelper(s, low + 1, high - 1);
+}
+
+bool isPalindrome2(const string& s) {
+  return isPalindromeHelper(s, 0, s.size() - 1);
+}
+
+int main() {
+  int num = 234523;
+  cout << num << " has " << digitCount(num) << " digits" << endl;
+
+  int values[] = {12, 3, 15, 6};
+  cout << arraySum(values, 4) << endl;
+
+  cout << isPalindrome("radar") << endl;
+
+  return 0;
+}

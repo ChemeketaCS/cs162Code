@@ -1,11 +1,11 @@
 {
     "tasks": [
         {
-            "label": "make program",
+            "label": "make program.exe",
             "type": "shell",
-            "command": "make program",
+            "command": "make program.exe",
             "windows": {
-                "command": "mingw32-make program"
+                "command": "mingw32-make program.exe"
             },
             "group": {
                 "kind": "build",

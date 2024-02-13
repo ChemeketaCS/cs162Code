@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  // Allocate memory on heap... set to 5
+  int* myData = new int;
+  *myData = 5;
+
+  // Tell OS we are done with it
+  delete myData;
+
+  // Make sure we don't try to use that address!
+  myData = nullptr;
+
+  // Now allocate new memory and initalize it
+  myData = new int;
+  *myData = 8;
+
+  return 0;
+}
