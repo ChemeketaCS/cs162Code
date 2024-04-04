@@ -6,21 +6,15 @@ CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wno-deprecate
 # list your .h files here
 HEADERS = Circle.h Point.h
 
-# list .cpp files here according to main program, tests, or both
-PROGRAM_FILES = main.cpp
-TEST_FILES = CircleTester.cpp
-SHARED_FILES = Circle.cpp Point.cpp
+# list .cpp files here
+TEST_FILES = tests.cpp Circle.cpp Point.cpp
 
 .PHONY: all
-all: program.exe tests.exe
+all: tests.exe
 
-program.exe: $(PROGRAM_FILES) $(SHARED_FILES) $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(PROGRAM_FILES) $(SHARED_FILES) -o $@
-
-tests.exe: $(TEST_FILES) $(SHARED_FILES) $(HEADERS)
+tests.exe: $(TEST_FILES) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(TEST_FILES) $(SHARED_FILES) -o $@
 
 .PHONY: clean
 clean:
-	rm -f program.exe
 	rm -f tests.exe

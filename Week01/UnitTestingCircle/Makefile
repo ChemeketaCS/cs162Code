@@ -3,8 +3,8 @@ CXXFLAGS = -g -Wall -Wextra
 CXXFLAGS += -std=c++17 -pedantic -pedantic-errors
 CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wno-deprecated-copy
 
-HEADERS = *.h
-TEST_FILES = *.cpp
+HEADERS = Circle.h
+TEST_FILES = tests.cpp Circle.cpp
 
 .PHONY: all
 all: tests.exe
