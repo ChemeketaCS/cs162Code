@@ -8,42 +8,47 @@
 
 using namespace std;
 
-// Fills an array of Persons (assumed to have 8 elements)
-//  Sets up a particular family structure by connecting parent to children
+// Fill in an array of Persons (assumed to have space for 8 elements)
+// Connect the family relationships between them with addChild
 void setupFamily(Person familyMembers[]) {
-  familyMembers[0] = Person("Anna");
-  familyMembers[1] = Person("Bob");
-  familyMembers[2] = Person("Carl");
-  familyMembers[3] = Person("Dana");
-  familyMembers[4] = Person("Erin");
-  familyMembers[5] = Person("Fay");
-  familyMembers[6] = Person("George");
-  familyMembers[7] = Person("Henry");
 
-  // make Bob and Carl children of Anna
-  familyMembers[0].addChild(&familyMembers[1]);
-  familyMembers[0].addChild(&familyMembers[2]);
+  // Create some pointers so that places in the array can have more
+  // meaningful identifiers locally, while we're filling them in.
+  Person* anna = &familyMembers[0];
+  Person* bob = &familyMembers[1];
+  Person* carl = &familyMembers[2];
+  Person* dana = &familyMembers[3];
+  Person* erin = &familyMembers[4];
+  Person* fay = &familyMembers[5];
+  Person* george = &familyMembers[6];
+  Person* henry = &familyMembers[7];
 
-  // make Dana and Erin children of Bob
-  familyMembers[1].addChild(&familyMembers[3]);
-  familyMembers[1].addChild(&familyMembers[4]);
+  // Assign each slot a new Person value with the appropriate name
+  *anna = Person("Anna"); // same as familyMembers[0] = Person("Anna")
+  *bob = Person("Bob");
+  *carl = Person("Carl");
+  *dana = Person("Dana");
+  *erin = Person("Erin");
+  *fay = Person("Fay");
+  *george = Person("George");
+  *henry = Person("Henry");
 
-  // make Fay child of Carl
-  familyMembers[2].addChild(&familyMembers[5]);
-
-  // make George child of Erin
-  familyMembers[4].addChild(&familyMembers[6]);
-
-  // make Henry child of Fay
-  familyMembers[5].addChild(&familyMembers[7]);
+  // Set up parent-child relationships
+  anna->addChild(bob); // same as familyMembers[0].addChild(&familyMembers[1])
+  anna->addChild(carl);
+  bob->addChild(dana);
+  bob->addChild(erin);
+  carl->addChild(fay);
+  erin->addChild(george);
+  fay->addChild(henry);
 }
 
 const int FAMILY_SIZE = 8;
 
 int main() {
   // Make an array that contains 8 People - will start with "default" People
-  //  that we replace. Slightly wasteful, but simpler. More efficient version
-  //  would store an array of Pointers to people.
+  // that we replace. Slightly wasteful, but simpler. More efficient version
+  // would store an array of Pointers to people.
   Person familyList[FAMILY_SIZE];
   setupFamily(familyList);
 
