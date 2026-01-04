@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+const int MONDAY = 0;
+const int TUESDAY = 1;
+const int WEDNESDAY = 2;
+const int THURSDAY = 3;
+const int FRIDAY = 4;
+
+const vector<string> DAY_NAMES = {"Mon", "Tues", "Wed", "Thurs", "Fri"};
+
+int main() {
+  int today = MONDAY;
+  cout << DAY_NAMES.at(today) << endl;
+
+  int tomorrow = today + 1;
+  cout << DAY_NAMES.at(tomorrow) << endl;
+
+  if(today == THURSDAY)
+    cout << "Today is trash day" << endl;
+
+  // uhhhh... constant does not protect us from stupidity
+  int someDay = 123;
+  cout << DAY_NAMES.at(someDay) << endl;
+}

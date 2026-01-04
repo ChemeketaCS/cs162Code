@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+struct Student {
+  string name;
+  vector<double> exams;
+};
+
+int main() {
+  // Make the students vector
+  vector<Student> students;
+
+  // Add two students to the vector
+  Student student1 = {"Beth Jones", {84.2, 94.3, 96.7}};
+  students.push_back(student1);
+
+  Student student2 = {"John Smith", {78.2, 88.3, 92.7}};
+  students.push_back(student2);
+
+  // Change John Smith's name
+  students.at(1).name = "John Doe";
+  // Change John Smith's second exam score to 90.0
+  students.at(1).exams.at(1) = 90.0;
+  
+  // Clear exam scores for all students
+  for (size_t i = 0; i < students.size(); ++i) {
+    students.at(i).exams.clear();
+  }
+
+}
