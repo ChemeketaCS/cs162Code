@@ -9,10 +9,7 @@ struct Student {
 };
 
 int main() {
-  Student student1 = {
-    "Beth Jones",
-    { 84.2, 94.3, 96.7 }
-  };
+  Student student1 = {"Beth Jones", {84.2, 94.3, 96.7}};
 
   // Print the first exam score
   cout << student1.exams.at(0) << endl;

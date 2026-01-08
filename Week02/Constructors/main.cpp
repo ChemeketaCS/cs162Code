@@ -3,42 +3,34 @@
 
 using namespace std;
 
-class Circle
-{
+class Circle {
 public:
-  double getX()
-  {
+  double getX() {
     return m_x;
   }
 
-  double getY()
-  {
+  double getY() {
     return m_y;
   }
 
-  double getRadius()
-  {
+  double getRadius() {
     return m_radius;
   }
 
-  void setRadius(double newRadius)
-  {
+  void setRadius(double newRadius) {
     // Ensure radius is never negative
     m_radius = abs(newRadius);
   }
 
-  void setX(double newX)
-  {
+  void setX(double newX) {
     m_x = newX;
   }
 
-  void setY(double newY)
-  {
+  void setY(double newY) {
     m_y = newY;
   }
 
-  string toString()
-  {
+  string toString() {
     stringstream outStream;
     outStream << "Circle with ";
     outStream << "  radius: " << m_radius;

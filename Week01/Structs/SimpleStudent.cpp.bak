@@ -78,7 +78,7 @@ int main() {
   //    cout << s2;
 
   // compare grades of two students
-  if(s1.quizAvg > s2.quizAvg)
+  if (s1.quizAvg > s2.quizAvg)
     cout << s2.name << " needs help from " << s1.name << endl;
 
   // print entire student - have to print members

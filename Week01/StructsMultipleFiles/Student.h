@@ -6,7 +6,7 @@
 
 /**
  * @brief Represents a student with a name and a list of exam scores.
- * 
+ *
  */
 struct Student {
   std::string name;
@@ -15,7 +15,7 @@ struct Student {
 
 /**
  * @brief Prints the information of a student.
- * 
+ *
  * @param student The student whose information is to be printed.
  */
 void printStudentInfo(const Student& student);

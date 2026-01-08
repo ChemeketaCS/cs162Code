@@ -3,76 +3,63 @@
 
 using namespace std;
 
-class Circle
-{
+class Circle {
 public:
-  //CONSTRUCTORS
-  Circle()
-  {
+  // CONSTRUCTORS
+  Circle() {
     m_radius = 1;
     m_x = 0;
     m_y = 0;
   }
 
   // ACCESSORS
-  double getX()
-  {
+  double getX() {
     return m_x;
   }
 
-  double getY()
-  {
+  double getY() {
     return m_y;
   }
 
-  double getRadius()
-  {
+  double getRadius() {
     return m_radius;
   }
 
   // MUTATORS
-  void setRadius(double newRadius)
-  {
+  void setRadius(double newRadius) {
     // Ensure radius is never negative
     m_radius = abs(newRadius);
   }
 
-  void setX(double newX)
-  {
+  void setX(double newX) {
     m_x = newX;
   }
 
-  void setY(double newY)
-  {
+  void setY(double newY) {
     m_y = newY;
   }
 
-  void scale(double scaleFactor)
-  {
+  void scale(double scaleFactor) {
     m_radius = m_radius * scaleFactor;
   }
 
-  void translate(double deltaX, double deltaY)
-  {
+  void translate(double deltaX, double deltaY) {
     m_x += deltaX;
     m_y += deltaY;
   }
 
   // OTHER METHODS
-  double getArea()
-  {
+  double getArea() {
     double area = m_radius * m_radius * numbers::pi;
     return area;
   }
 
-  double getCircumference()
-  {
+  double getCircumference() {
     double circumference = 2 * m_radius * numbers::pi;
     return circumference;
   }
 
-  string toString()
-  {
+  string toString() {
     stringstream outStream;
     outStream << "Circle with ";
     outStream << "  radius: " << m_radius;

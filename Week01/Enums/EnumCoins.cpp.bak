@@ -3,20 +3,12 @@
 using namespace std;
 
 // enum with defined values
-enum class Coin
-{
-  PENNY = 1,
-  NICKEL = 5,
-  DIME = 10,
-  QUARTER = 25
-};
+enum class Coin { PENNY = 1, NICKEL = 5, DIME = 10, QUARTER = 25 };
 
-int main()
-{
+int main() {
   Coin c1 = Coin::PENNY;
   Coin c2 = Coin::DIME;
 
   int value = static_cast<int>(c1) + static_cast<int>(c2);
   cout << "Value is " << value << endl;
 }
-

@@ -2,7 +2,7 @@
  * @file Circle.h
  * @author your name
  * @brief Header file for Circle class
- * 
+ *
  */
 
 #ifndef CIRCLE_H

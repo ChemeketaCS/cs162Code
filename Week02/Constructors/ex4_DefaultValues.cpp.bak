@@ -3,24 +3,20 @@
 
 using namespace std;
 
-class Circle
-{
+class Circle {
 public:
-  //CONSTRUCTORS
-  Circle()
-  {
+  // CONSTRUCTORS
+  Circle() {
     // Default values already set in member variable declarations
   }
 
-  Circle(double radius)
-  {
+  Circle(double radius) {
     // x and y default to 0
     // Set radius using mutator to ensure validation
     setRadius(radius);
   }
 
-  Circle(double radius, double xLoc, double yLoc)
-  {
+  Circle(double radius, double xLoc, double yLoc) {
     m_x = xLoc;
     m_y = yLoc;
     // Set radius using mutator to ensure validation
@@ -28,40 +24,33 @@ public:
   }
 
   // ACCESSORS
-  double getX()
-  {
+  double getX() {
     return m_x;
   }
 
-  double getY()
-  {
+  double getY() {
     return m_y;
   }
 
-  double getRadius()
-  {
+  double getRadius() {
     return m_radius;
   }
 
   // MUTATORS
-  void setRadius(double newRadius)
-  {
+  void setRadius(double newRadius) {
     // Ensure radius is never negative
     m_radius = abs(newRadius);
   }
 
-  void setX(double newX)
-  {
+  void setX(double newX) {
     m_x = newX;
   }
 
-  void setY(double newY)
-  {
+  void setY(double newY) {
     m_y = newY;
   }
 
-  string toString()
-  {
+  string toString() {
     stringstream outStream;
     outStream << "Circle with ";
     outStream << "  radius: " << m_radius;
@@ -89,8 +78,7 @@ int main() {
   // Create a Circle using the default constructor with explicit syntax
   // Circle() creates an anonymous temporary object, we copy it into c3
   Circle c3 = Circle();
-  
+
   // Create an anonymous Circle and use it immediately without storing it
   cout << Circle().toString() << endl;
-
 }

@@ -19,7 +19,7 @@ int main() {
   int tomorrow = today + 1;
   cout << DAY_NAMES.at(tomorrow) << endl;
 
-  if(today == THURSDAY)
+  if (today == THURSDAY)
     cout << "Today is trash day" << endl;
 
   // uhhhh... constant does not protect us from stupidity

@@ -28,10 +28,10 @@ double Circle::getArea() {
   return area;
 }
 
-//Non object function declaration
+// Non object function declaration
 int getNumber();
 
-//Non object function definition
+// Non object function definition
 int getNumber() {
   return 42;
 }
@@ -41,4 +41,3 @@ int main() {
 
   int x = getNumber();
 }
-

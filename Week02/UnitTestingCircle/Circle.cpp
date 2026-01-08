@@ -38,7 +38,7 @@ double Circle::getY() {
 
 double Circle::getArea() {
   double area = m_radius * m_radius * numbers::pi;
-    return area;
+  return area;
 }
 
 void Circle::print() {

@@ -22,10 +22,10 @@ private:
   double m_radius;
 };
 
-//Non object function declaration
+// Non object function declaration
 int getNumber();
 
-//Non object function definition
+// Non object function definition
 int getNumber() {
   return 42;
 }
