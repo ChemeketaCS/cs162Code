@@ -9,8 +9,8 @@ public:
     m_radius = 1;
   }
 
-  Circle(double newRadius) {
-    m_radius = r;
+  Circle(double radius) {
+    m_radius = radius;
   }
 
   double getArea() {
