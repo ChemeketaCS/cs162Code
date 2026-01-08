@@ -30,12 +30,3 @@
 *.exe
 *.out
 *.app
-
-# QTCreator related
-.qmake.stash
-debug/
-release/
-*.pro.user*
-.vscode
-Week01Code.zip
-.vs

@@ -1,0 +1,101 @@
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
+class Circle
+{
+public:
+  //CONSTRUCTORS
+  Circle()
+  {
+    m_radius = 1;
+    m_x = 0;
+    m_y = 0;
+  }
+
+  Circle(double radius)
+  {
+    m_x = 0;
+    m_y = 0;
+    // Call our setRadius function to set the initial radius
+    //  it will make sure we don't use a negative radius
+    setRadius(radius);
+  }
+
+  Circle(double radius, double xLoc, double yLoc)
+  {
+    m_x = xLoc;
+    m_y = yLoc;
+    // Call our setRadius function to set the initial radius
+    //  it will make sure we don't use a negative radius
+    setRadius(radius);
+  }
+
+  // ACCESSORS
+  double getX()
+  {
+    return m_x;
+  }
+
+  double getY()
+  {
+    return m_y;
+  }
+
+  double getRadius()
+  {
+    return m_radius;
+  }
+
+  // MUTATORS
+  void setRadius(double newRadius)
+  {
+    // Ensure radius is never negative
+    m_radius = abs(newRadius);
+  }
+
+  void setX(double newX)
+  {
+    m_x = newX;
+  }
+
+  void setY(double newY)
+  {
+    m_y = newY;
+  }
+
+  string toString()
+  {
+    stringstream outStream;
+    outStream << "Circle with ";
+    outStream << "  radius: " << m_radius;
+    outStream << "  centered at " << m_x << "," << m_y;
+    return outStream.str();
+  }
+
+private:
+  double m_radius;
+  double m_x;
+  double m_y;
+};
+
+int main() {
+  // Create a Circle using each constructor
+  Circle c0;
+  cout << c0.toString() << endl;
+
+  Circle c1(5);
+  cout << c1.toString() << endl;
+
+  Circle c2(4, 12, 3);
+  cout << c2.toString() << endl;
+
+  // Create a Circle using the default constructor with explicit syntax
+  // Circle() creates an anonymous temporary object, we copy it into c3
+  Circle c3 = Circle();
+  
+  // Create an anonymous Circle and use it immediately without storing it
+  cout << Circle().toString() << endl;
+
+}
