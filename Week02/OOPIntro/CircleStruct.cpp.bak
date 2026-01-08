@@ -4,10 +4,18 @@ using namespace std;
 
 struct Circle {
   double radius;
+  double x;
+  double y;
 };
+
+double getArea(const Circle& c) {
+  double area = c.radius * c.radius * numbers::pi;
+  return area;
+}
 
 int main() {
   Circle c1;
   c1.radius = 10;
   cout << "c1's radius is " << c1.radius << endl;
+  cout << "c1's area is " << getArea(c1) << endl;
 }

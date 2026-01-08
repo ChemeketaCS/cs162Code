@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <numbers>
 
 using namespace std;
 
@@ -11,7 +13,7 @@ public:
   }
 
   void setRadius(double newRadius) {
-    m_radius = newRadius;
+    m_radius = abs(newRadius);
   }
 
   double getRadius() {
