@@ -1,0 +1,45 @@
+class Point {
+public:
+    Point(double x, double y) {
+        m_x = x;
+        m_y = y;
+    }
+
+private:
+    double m_x;
+    double m_y;
+};
+
+class Circle {
+public:
+    Circle(double radius, double x, double y)
+      : m_center(x, y)
+    {
+        m_radius = radius;
+    }
+
+    Circle(double radius)
+      : m_center(0, 0)
+    {
+        m_radius = radius;
+    }
+
+    Circle(double radius, const Point& center)
+      : m_center(center)
+    {
+        m_radius = radius;
+    }
+
+
+private:
+    double m_radius;
+    Point m_center;
+};
+
+int main() {
+    Circle c1(5.0, 2, 1);
+    Circle c2(10.0);
+    Circle c3(7.5, Point(3.0, 4.0));
+    Point p(1.0, 2.0);
+    Circle c4(4.0, p);
+};

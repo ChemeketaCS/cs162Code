@@ -1,0 +1,38 @@
+#include <format>
+#include <iostream>
+
+#include "Point.h"
+
+using namespace std;
+
+class Circle {
+public:
+    Circle(double radius, double x, double y) {
+        m_radius = radius;
+        m_center = Point(x, y);
+    }
+
+    Point getCenter() const {
+        return m_center;
+    }
+
+    string toString() const {
+        string s = format("Center: {}, Radius: {}", m_center.toString(), m_radius);
+    }
+
+private:
+    double m_radius;
+    Point m_center;
+};
+
+int main() {
+    Circle c1(5.0, 2, 1);
+
+    Point center = c1.getCenter();
+    cout << "c1: " << c1.toString() << endl;
+    cout << "center: " << center.getY() << endl;
+
+    center.setX(10.0);
+    cout << "c1: " << c1.toString() << endl;
+    cout << "center: " << center.getY() << endl;
+}

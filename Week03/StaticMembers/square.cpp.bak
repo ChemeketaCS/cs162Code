@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <format>
+using namespace std;
+
+class Square {
+public:
+    static const int NUM_SIDES;  //class-level constant
+
+    // A static factory function to create a square object
+    static Square create(double size) {
+        // Make some decisions about how to construct the square
+        Square s(size); // Call the private constructor
+        // do some fancy other work
+        return s; // Return the square object
+    }
+
+    void print() const {
+        string s = format("Square with {} sides of length: {}",
+                          NUM_SIDES,
+                          m_sideLength);
+        cout << s;
+    }
+private:
+    // A private constructor that outside code cannot access
+    Square(double size) {
+        m_sideLength = size;
+    }
+
+    double m_sideLength; // side length of the square
+};
+
+const int Square::NUM_SIDES = 4; // Initialize the static constant
+
+int main()
+{
+    // Access the static member without an object
+    cout << "A square has " << Square::NUM_SIDES << " sides." << endl;
+
+    // Can't use constructor directly
+    // Square s1(5.0); // Error: constructor is private
+
+    // Must use the static "factory" method to create a square
+    // Use the static method to create a square
+    Square s1 = Square::create(5.0);
+    s1.print();
+}
