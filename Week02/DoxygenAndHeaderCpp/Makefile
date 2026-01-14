@@ -12,11 +12,11 @@ CXXFLAGS += -std=c++20 -fmodules-ts -pedantic -pedantic-errors
 CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wuninitialized
 
 # list .h files here
-HEADERS =
+HEADERS = Circle.h
 
 # list .cpp files here
-PROGRAM_FILES = *.cpp
-SHARED_FILES = 
+PROGRAM_FILES = main.cpp
+SHARED_FILES = Circle.cpp
 
 .PHONY: all
 all: program.exe
