@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+// Minimal Circle struct
+struct Circle {
+    double radius = 1.0;
+};
+
 int main() {
     int x = 42;
     cout << "Address of x is " << &x << endl;
@@ -14,10 +19,10 @@ int main() {
     double* p2 = &y; // q is a pointer to a double, initialized to the address of y
     cout << "Value of p2 is " << p2 << endl;
 
-    char c = 'x'; // c is a char
-    cout << "Address of c is " << &c << endl;
+    Circle circle1; // circle1 is a struct of type Circle
+    cout << "Address of circle1 is " << &circle1 << endl;
 
-    char* p3 = &c; // p3 is a pointer to a char, initialized to the address of c
+    Circle* p3 = &circle1; // p3 is a pointer to a Circle, initialized to the address of circle1
     cout << "Value of p3 is " << p3 << endl;
 
     // char* p4;
