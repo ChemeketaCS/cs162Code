@@ -7,10 +7,11 @@ struct Circle {
 };
 
 int main() {
-    int x = 42;
+
+    int x = 10; // x is an integer
     cout << "Address of x is " << &x << endl;
 
-    int* p = &x;
+    int* p = &x; // p is a pointer to an integer, initialized to the address of x
     cout << "Value of p is " << p << endl;
 
     double y = 14.0; // y is a double

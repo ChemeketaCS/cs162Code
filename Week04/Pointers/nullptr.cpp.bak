@@ -12,4 +12,10 @@ int main() {
     } else {
         cout << "p points to address " << p << endl;
     }
+
+    if(p) {
+        cout << "p points to address " << p << endl;
+    } else {
+        cout << "p is a null pointer" << endl;
+    }
 }
