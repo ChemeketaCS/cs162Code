@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+// Minimal Circle struct
+struct Circle {
+    double radius = 1.0;
+};
+
+int main() {
+
+    int x = 10; // x is an integer
+    cout << "Address of x is " << &x << endl;
+
+    int* p = &x; // p is a pointer to an integer, initialized to the address of x
+    cout << "Value of p is " << p << endl;
+
+    double y = 14.0; // y is a double
+    cout << "Address of y is " << &y << endl;
+
+    double* p2 = &y; // q is a pointer to a double, initialized to the address of y
+    cout << "Value of p2 is " << p2 << endl;
+
+    Circle circle1; // circle1 is a struct of type Circle
+    cout << "Address of circle1 is " << &circle1 << endl;
+
+    Circle* p3 = &circle1; // p3 is a pointer to a Circle, initialized to the address of circle1
+    cout << "Value of p3 is " << p3 << endl;
+
+    // char* p4;
+    // p4 = p; // Error: cannot convert from 'int*' to 'char*'
+    // p4 = reinterpret_cast<char*>(p); // Could force the conversion using reinterpret_cast
+}

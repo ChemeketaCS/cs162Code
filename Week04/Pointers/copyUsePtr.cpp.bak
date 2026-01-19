@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 50;
+    int* p = &x;
+    int* p2 = p;
+
+    cout << "Address of x is " << &x << endl;
+    cout << "Value of p is " << p << endl;
+    cout << "Value of p2 is " << p2 << endl;
+
+    // Change the value of x using pointer p
+    *p = 100;
+    cout << "New value of x is " << x << endl;
+    cout << "Value pointed to by p is " << *p << endl;
+    cout << "Value pointed to by p2 is " << *p2 << endl;
+
+    if (p == p2) {
+        cout << "p and p2 point to the same address." << endl;
+    }
+}

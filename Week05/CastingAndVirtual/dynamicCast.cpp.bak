@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+protected:
+    string m_name;
+    int m_age;
+
+public:
+    Person(string name, int age) {
+        m_name = name;
+        m_age = age;
+    }
+    
+    string getName() const {
+        return m_name;
+    }
+
+    virtual void introduce() const {
+        cout << "Hi, my name is " << m_name << " and I am " << m_age << " years old." << endl;
+    }
+};
+
+class Student : public Person {
+private:
+    string m_major;
+public:
+    Student(string name, int age, string major)
+      : Person(name, age) {
+        m_major = major;
+    }
+
+    virtual void introduce() const {
+        cout << "Hi, my name is " << m_name << " and I am " << m_age << " years old." << endl;
+        cout << "My major is " << m_major << "." << endl;
+    }
+};
+
+
+int main() {
+    Person p("Wendy", 30);
+    Student s("Alex", 20, "Computer Science");
+
+    // A Person pointer can point to either a Person or a Student
+    Person* personPtr1 = &p;
+    Person* personPtr2 = &s;
+
+    // A Student pointer can only point to a Student
+    Student* studentPtr1 = &s;
+    // Student* studentPtr1 = &p; // Error: cannot convert from 'Person*' to 'Student*'
+
+    // Try to dynamic_cast personPtr2 into a Student*
+    Student* studentFromFunc1 = dynamic_cast<Student*>(personPtr2);
+    if (studentFromFunc1 != nullptr) {
+        cout << "Successfully made Student* from the Person*" << endl;
+        studentFromFunc1->introduce();
+    } else {
+        cout << "That wasn't a student!!!" << endl;
+    }
+}
