@@ -1,7 +1,7 @@
 #include <cmath>
 #include <iostream>
 
-import Person;
+#include "Person.h"
 
 using namespace std;
 
