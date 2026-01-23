@@ -4,61 +4,60 @@ using namespace std;
 
 class Person {
 protected:
-    string m_name;
-    int m_age;
+  string m_name;
+  int m_age;
 
 public:
-    Person(string name, int age) {
-        m_name = name;
-        m_age = age;
-    }
-    
-    string getName() const {
-        return m_name;
-    }
+  Person(string name, int age) {
+    m_name = name;
+    m_age = age;
+  }
 
-    void introduce() const {
-        cout << "Hi, my name is " << m_name << " and I am " << m_age << " years old." << endl;
-    }
+  string getName() const {
+    return m_name;
+  }
+
+  virtual void introduce() const {
+    cout << "Hi, my name is " << m_name << " and I am " << m_age
+         << " years old." << endl;
+  }
 };
 
-class Student : public Person {
+class Student: public Person {
 private:
-    string m_major;
-public:
-    Student(string name, int age, string major)
-      : Person(name, age) {
-        m_major = major;
-    }
+  string m_major;
 
-    void introduce() const {
-        cout << "Hi, my name is " << m_name << " and I am " << m_age << " years old." << endl;
-        cout << "My major is " << m_major << "." << endl;
-    }
+public:
+  Student(string name, int age, string major): Person(name, age) {
+    m_major = major;
+  }
+
+  virtual void introduce() const {
+    cout << "Hi, my name is " << m_name << " and I am " << m_age
+         << " years old." << endl;
+    cout << "My major is " << m_major << "." << endl;
+  }
 };
 
 void makeIntroduction(const Person& person) {
-    cout << "Let's meet: " << person.getName() << endl;
-    person.introduce();
+  cout << "Let's meet: " << person.getName() << endl;
+  person.introduce();
 }
+
+class Circle {};
 
 int main() {
-    Person p("Wendy", 30);
-    Student s("Alex", 20, "Computer Science");
+  Student s("Alex", 20, "Computer Science");
 
-    Person& personRef1 = p;
-    Person& personRef2 = s;
+  // Point to a Person that happens to be a Student
+  Person* somePersonPtr = &s;
 
-    personRef1.introduce();
-    personRef2.introduce();
-    
-    makeIntroduction(p);
-    makeIntroduction(s);
+  Student* someStudent = dynamic_cast<Student*>(somePersonPtr);
 
-    // Student& studentRef1 = p;
-    // Student& studentRef2 = s;
-
-    // studentRef1.introduce();
-    // studentRef2.introduce();
+  //   cout << "---------------------------" << endl;
+  //   p.introduce();
+  cout << "---------------------------" << endl;
+  s.introduce();
+  cout << "---------------------------" << endl;
+  makeIntroduction(s);
 }
-

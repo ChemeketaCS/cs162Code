@@ -45,8 +45,20 @@ void makeIntroduction(Person person) {
 
 int main() {
     Person p("Wendy", 30);
+
     Student s("Alex", 20, "Computer Science");
 
+    //Copy s into a Person variable
+    Person p2 = s;
+
+    //Point to a Person
+    Person* somePerson = &s;
+
+    cout << "---------------------------" << endl;
+    p.introduce();
+    cout << "---------------------------" << endl;
+    s.introduce();
+    cout << "---------------------------" << endl;
     makeIntroduction(p);
     makeIntroduction(s);
 }

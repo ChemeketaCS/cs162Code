@@ -1,0 +1,31 @@
+#include <iostream>
+
+#include "Rational.h"
+
+using namespace std;
+
+int main() {
+  Rational r1(1, 2); // Represents 1/2
+  Rational r2(2, 3); // Represents 2/3
+
+  Rational sum = r1 + r2;
+  cout << "Sum: " << sum.toString() << endl;
+
+  bool areEqual = r1 == r2;
+  cout << "Are r1 and r2 equal? " << (areEqual ? "Yes" : "No") << endl;
+
+  cout << "r1: " << r1.toString() << endl;
+  cout << "Incrementing r1..." << endl;
+  ++r1;
+  cout << "r1: " << r1.toString() << endl;
+
+  cout << "r3 = ++r1 ..." << endl;
+  Rational r3 = ++r1;
+  cout << "r1: " << r1.toString() << endl;
+  cout << "r3: " << r3.toString() << endl;
+  
+  cout << "r4 = r1++ ..." << endl;
+  Rational r4 = r1++;
+  cout << "r1: " << r1.toString() << endl;
+  cout << "r4: " << r4.toString() << endl;
+}
