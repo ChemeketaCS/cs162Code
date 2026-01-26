@@ -1,0 +1,32 @@
+#include <iostream>
+#include <set>
+#include <string>
+#include <vector>
+using namespace std;
+
+
+int main() {
+    set<string> fruit = {"apple", "date", "banana", "cherry"};
+
+    // Create an iterator "it" that points to the beginning of the set
+    // Continue until the end is reached
+    // Use ++ to advance the iterator
+    for (auto it = fruit.begin(); it != fruit.end(); ++it) {
+        // Use *it to get the value
+        cout << *it << endl;
+    }
+
+    cout << "-----------------" << endl;
+
+    // // This would not compile:
+    //cout << fruit.at(2) << endl;
+    // // Nor would this:
+    //set<string>::iterator it2 = fruit.begin() + 2;
+
+    // Can only reach an element by moving step by step
+    set<string>::iterator it3 = fruit.begin();
+    ++it3; // now at 2nd element
+    ++it3; // now at 3rd element
+    // Use *it3 to get the value
+    cout << "Third element: " << *it3 << endl;
+}

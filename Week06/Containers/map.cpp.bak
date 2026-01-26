@@ -1,0 +1,33 @@
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <string>
+using namespace std;
+
+int main() {
+  // Sample text to read words from
+  string sampleText = R"(
+  apple banana orange apple grape banana pear orange kiwi mango pear peach
+  strawberry blueberry raspberry blackberry apple mango
+  )";
+
+  // Use a stringstream to simulate reading from a file
+  stringstream textStream(sampleText);
+
+  // Create a map to hold word counts
+  map<string, int> wordCounts;
+
+  // Read words from the stream
+  string word;
+  while (textStream >> word) {
+    if (wordCounts.contains(word)) {
+      wordCounts.at(word)++;    // Increment count if word already exists
+    } else {
+      wordCounts.insert({word, 1});  // Initialize count to 1 if new word
+    }
+  }
+
+  cout << "Total unique words: " << wordCounts.size() << endl;
+
+  cout << "Apple count: " << wordCounts.at("apple") << endl;
+}

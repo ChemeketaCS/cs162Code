@@ -1,0 +1,24 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<string> words = {"one", "two", "three", "four", "five", "six"};
+
+    // vector of integers to hold the lengths
+    // Presize it to have enough space
+    vector<int> wordLengths(words.size());
+
+    transform(
+      words.begin(),
+      words.end(),
+      wordLengths.begin(),
+      [](const string& word) { return word.length(); }
+    );
+
+    cout << "Word lengths: ";
+    for (const auto& length : wordLengths) {
+        cout << length << " ";
+    }
+}

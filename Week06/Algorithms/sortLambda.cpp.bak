@@ -1,0 +1,25 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    // Create a vector of integers
+    vector<int> numbers = {5, 2, 9, 1, 5, 6};
+
+    // Sort the vector in descending order using a lambda function
+    sort(
+      numbers.begin(),
+      numbers.end(),
+      // Lambda comparer for descending order
+      [](int a, int b) {
+        return a > b; // a comes first if it is greater than b
+      }
+    );
+
+    cout << "Sorted numbers (descending): ";
+    for (const auto& num : numbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+}

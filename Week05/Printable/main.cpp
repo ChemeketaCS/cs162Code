@@ -58,5 +58,4 @@ int main() {
   usePrinter(c1);
   usePrinter(p1);
 
-  return 0;
 }

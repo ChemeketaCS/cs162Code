@@ -1,0 +1,21 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int square(int a) {
+    return a * a;
+}
+
+int main() {
+
+    cout << "square() result: " << square(5) << endl;
+
+    auto myLambda = [] (int a) {
+        return a * a;
+    };
+    cout << "Lambda function result: " << myLambda(5) << endl;
+
+    cout << "Direct lambda call result: "
+         << ([] (int a) { return a * a; })(5) << endl;
+}
