@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+
+#include "PlayerList.h"
+
+using namespace std;
+
+int main() {
+    cout << "Start of main" << endl;
+
+    PlayerList original(3); // Create a PlayerList with space for 3 players
+    original.setPlayerName(0, "Alice");
+    original.setPlayerName(1, "Bob");
+    original.setPlayerName(2, "Carlos");
+
+    PlayerList other(1); // Create another PlayerList with space for 1 player
+    other.setPlayerName(0, "Diana");
+
+    other = original; // Use the assignment operator to copy original into other
+
+    cout << "End of main" << endl;
+}

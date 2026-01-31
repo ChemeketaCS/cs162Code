@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // Allocate an array of 4 integers
+    int* data = new int[3];
+    data[0] = 1;
+    data[1] = 2;
+    data[2] = 3;
+
+    int* badCopy = data; // BAD: just copies the pointer!
+    badCopy[0] = 10;
+
+    // Make a new empty array:
+    int* copy = new int[3];
+
+    // Copy the contents of data to copy
+    for (int i = 0; i < 3; ++i) {
+        copy[i] = data[i];
+    }
+
+    // Modify copy
+    copy[1] = 20;
+
+    // Print both arrays
+    cout << "data array: ";
+    for (int i = 0; i < 3; ++i) {
+        cout << data[i] << " ";
+    }
+    cout << endl;
+    cout << "copy array: ";
+    for (int i = 0; i < 3; ++i) {
+        cout << copy[i] << " ";
+    }
+    cout << endl;
+    // Delete the arrays
+    delete[] data;
+    delete[] copy;
+}
