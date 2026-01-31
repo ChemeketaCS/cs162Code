@@ -3,14 +3,23 @@
 using namespace std;
 
 class Person {
-protected:
+private:
   string m_name;
   int m_age;
 
 public:
+  Person() {
+    m_name = "??";
+    m_age = 0;
+  }
+
   Person(string name, int age) {
     m_name = name;
     m_age = age;
+  }
+
+  string getName() const {
+    return m_name;
   }
 
   void introduce() const {
@@ -25,13 +34,11 @@ private:
 
 public:
   Student(string name, int age, string major): Person(name, age) {
-    // We could set m_name and m_age here as they are protected
-    // but it's better to use the constructor of Person
     m_major = major;
   }
 
   void study() const {
-    cout << m_name << " is busy studying " << m_major << "." << endl;
+    cout << getName() << " is busy studying " << m_major << "." << endl;
   }
 };
 
@@ -39,6 +46,4 @@ int main() {
   Student s("Alex", 20, "Computer Science");
   s.introduce(); // inherited from Person
   s.study();     // defined in Student
-
-  // s.m_name = "John"; // Error: m_name is protected in Person
 }

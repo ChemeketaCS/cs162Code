@@ -3,7 +3,7 @@ CXXFLAGS = -g -Wall -Wextra
 CXXFLAGS += -std=c++17 -pedantic -pedantic-errors
 CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wno-deprecated-copy
 
-HEADERS = *.h
+HEADERS =
 PROGRAM_FILES = *.cpp
 
 .PHONY: all

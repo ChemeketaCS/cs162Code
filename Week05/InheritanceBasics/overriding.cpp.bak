@@ -32,7 +32,8 @@ private:
     string m_major;
 public:
     Student(string name, int age, string major)
-      : Person(name, age) {
+     : Person(name, age)
+    {
         m_major = major;
     }
 
@@ -43,12 +44,16 @@ public:
 
     void introduce() const {
         Person::introduce();
-        cout << "My major is " << m_major << "." << endl;
+        cout << "   My major is " << m_major << "." << endl;
     }
 };
 
 int main() {
-    Student s("Alex", 20, "Computer Science");
-    s.introduce();
-    cout << s.toString() << endl;
+  cout << "-------------------------" << endl;
+  Person p("John", 30);
+  p.introduce();
+  cout << "-------------------------" << endl;
+  Student s("Alex", 20, "Computer Science");
+  s.introduce();
+  cout << "-------------------------" << endl;
 }

@@ -16,21 +16,22 @@ int main() {
              )";
 
   // Pattern to match
-  string regexPattern =
-      R"(\(?([\d]{3})\)?[-\.]?[\s-\.]?([\d]{3})[-\.]?([\d]{4}))";
+  // Pattern is ([\d]{3}).?([\d]{4}) but surrounded by R"( and )" to make a raw string
+  string regexPattern = R"(([\d]{3}).?([\d]{4}))";
 
   // Build regex object
   regex re(regexPattern);
 
-  // Get an iterator that works over the string using our regex object to
-  // advance
+  // Get an iterator that works over the string using our regex object
   sregex_iterator next(numberList.begin(), numberList.end(), re);
+  // Default constructor produces an end-of-sequence iterator
   sregex_iterator end;
   while (next != end) {
     smatch match = *next;
     // match[0] is whole matched string, match[1]+ are subgroups
     cout << "Turning " << match[0] << " into:" << endl;
-    cout << match[1] << "-" << match[2] << "-" << match[3] << endl;
+    cout << match[1] << "-" << match[2] << endl;
+    // Advance to next match
     next++;
   }
 }

@@ -10,17 +10,13 @@ endif
 CXXFLAGS = -g -Wall -Wextra
 CXXFLAGS += -std=c++20 -fmodules-ts -pedantic -pedantic-errors
 CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wuninitialized
-# uncomment the following lines to enable address sanitizer on non-Windows platforms
-ifneq ($(OS),Windows_NT)
-	CXXFLAGS += -fsanitize=address
-endif
 
 # list .h files here
-HEADERS = Circle.h
+HEADERS =
 
 # list .cpp files here
-PROGRAM_FILES = main.cpp
-SHARED_FILES = Circle.cpp
+PROGRAM_FILES = *.cpp
+SHARED_FILES = 
 
 .PHONY: all
 all: program.exe

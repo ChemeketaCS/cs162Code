@@ -14,8 +14,8 @@ void checkObject(GeometricObject& g) {
 }
 
 int main() {
-    // // Cannot create a GeometricObject directly
-    // GeometricObject g("black");
+    // Cannot create a GeometricObject directly
+    GeometricObject g("black");
     
     Rectangle rect(3.0, 4.0, "red");
     Circle circ(5.0, "blue");
