@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+T myMax(T a, T b) {
+    T maxVal;  // Local variable of type T
+    if (a > b) {
+        maxVal = a;
+    } else {
+        maxVal = b;
+    }
+    return maxVal;
+}
+
+int main() {
+    char c1 = 'a';
+    char c2 = 'r';
+    char cMax = myMax(c1, c2);
+    cout << "The max of " << c1 << " and " << c2 << " is " << cMax << endl;
+}
