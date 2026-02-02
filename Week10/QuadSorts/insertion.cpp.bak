@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+#include "vector-helpers.h"
+
+template<typename T>
+void insertionSort(vector<T>& vec) {
+    int n = static_cast<int>(vec.size());
+    // Do n-1 passes, starting from index 1
+    for (int i = 1; i < n; ++i) {
+        // j is the current index of the element being inserted
+        int j = i;
+        // Swap left until the correct position is found
+        while (j > 0 && vec.at(j - 1) > vec.at(j)) {
+            swap(vec.at(j), vec.at(j - 1));
+            j--;
+        }
+        // Debug output to show the array after each outer loop iteration
+        cout << "After pass " << i << " (inserted " << vec.at(j + 1) << "): " << endl;
+        cout << vectorToString(vec) << endl;
+    }
+}
+
+int main() {
+    vector<int> numbers = {8, 3, 7, 1, 9, 12, 6, 20, 11, 14};
+
+    insertionSort(numbers);
+    cout << "Sorted array: " << endl;
+    cout << vectorToString(numbers) << endl;
+}

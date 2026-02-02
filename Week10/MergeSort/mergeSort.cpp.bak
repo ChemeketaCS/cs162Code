@@ -1,0 +1,111 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+#include "vector-helpers.h"
+
+// Other helpers (defined below main)
+template<typename T>
+void merge(vector<T>& vec, int start, int end, vector<T>& temp);
+
+string spaces(bool add = true, bool remove = false);
+
+// Recursive merge sort function
+template<typename T>
+void mergeSort(vector<T>& vec, int start, int end, vector<T>& temp) {
+    if (start >= end) {
+        return; // Base case: 0-1 items are already sorted
+    }
+    // Debug output
+    cout << spaces() << "mergeSort called with start=" << start << ", end=" << end << endl;
+    cout << spaces(false) << vectorToString(vec, start, end) << endl;
+
+    int mid = (start + end) / 2;
+    mergeSort(vec, start, mid, temp);       // Sort left half
+    mergeSort(vec, mid + 1, end, temp);     // Sort right half
+    merge(vec, start, end, temp);           // Merge the two halves
+    
+    // Debug output
+    cout << spaces(false) << "mergeSort ending with start=" << start << ", end=" << end << endl;
+    cout << spaces(false) << vectorToString(vec, start, end) << endl;
+    spaces(false, true);
+}
+
+// Wrapper function to initiate merge sort
+template<typename T>
+void mergeSort(vector<T>& vec) {
+    // Make temporary vector for merges
+    vector<T> temp(vec.size());
+    // Do the sort
+    int endIndex = static_cast<int>(vec.size() - 1);
+    mergeSort(vec, 0, endIndex, temp);
+}
+
+
+int main() {
+    vector<int> numbers = {8, 3, 7, 1, 9, 12, 20, 6, 11, 14, 2, 16, 4, 10, 5, 15};
+    mergeSort(numbers);
+    cout << "Sorted array: " << endl;
+    cout << vectorToString(numbers) << endl;
+}
+
+
+// Assumes start/end consists of two sorted halves:
+//   [start..mid] and [mid+1..end]
+// Temp should be same size as vec. It is a parameter so that later we
+//   can reuse the same temp vector across multiple calls to merge
+template<typename T>
+void merge(vector<T>& vec, int start, int end, vector<T>& temp) {
+    int mid = (start + end) / 2;
+    int nextLeft = start;
+    int nextRight = mid + 1;
+    int mergeIndex = start;
+
+    int totalItems = end - start + 1;
+    for(int i = 0; i < totalItems; ++i) {
+        // determine if taking from left or right
+        bool takeLeft;
+        bool leftEmpty = (nextLeft > mid);
+        bool rightEmpty = (nextRight > end);
+        if (rightEmpty) {
+            takeLeft = true;
+        } else if (leftEmpty) {
+            takeLeft = false;
+        } else if (vec.at(nextLeft) <= vec.at(nextRight)) {
+            // items in both, left is smaller
+            takeLeft = true;
+        } else {
+            // items in both, right is smaller
+            takeLeft = false;
+        }
+
+        // take from the chosen side
+        if (takeLeft) {
+            temp.at(mergeIndex) = vec.at(nextLeft);
+            nextLeft++;
+        } else {
+            temp.at(mergeIndex) = vec.at(nextRight);
+            nextRight++;
+        }
+        mergeIndex++;
+    }
+
+    // Copy the merged elements back into the original vector
+    for (int i = start; i <= end; ++i) {
+        vec.at(i) = temp.at(i);
+    }
+}
+
+// Manage indentation for debug output
+string spaces(bool add, bool remove) {
+  static string spaces = "";
+  if (add) {
+      string curSpaces = spaces;
+      spaces += " ";
+      return curSpaces;
+  }
+  if (remove) {
+      spaces.pop_back();
+  }
+  return spaces;
+}

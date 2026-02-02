@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template<typename T>
+int binarySearch(const vector<T>& vec, T key) {
+    int low = 0;
+    int high = vec.size() - 1;
+
+    while (low <= high) {
+        cout << "Low index: " << low << ", High index: " << high << endl;
+        int mid = low + (high - low) / 2;
+        T midValue = vec.at(mid);
+        cout << "Middle index " << mid << ": Value " << midValue << endl;
+
+        if (midValue == key) {
+            return mid; // Return the index if the key is found
+        } else if (midValue < key) {
+            cout << "Middle value too low. Update low index." << endl;
+            low = mid + 1;
+        } else {
+            cout << "Middle value too high. Update high index." << endl;
+            high = mid - 1;
+        }
+    }
+    return -1; // Return -1 if the key is not found
+}
+
+int main() {
+    vector<int> numbers = {6, 10, 17, 21, 26, 30, 37, 40, 49, 54};
+    int key;
+    cout << "Enter the value to search for: ";
+    cin >> key;
+    cout << key << endl;
+
+    int result = binarySearch(numbers, key);
+
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found in the vector." << endl;
+    }
+}

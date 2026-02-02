@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int addValues(vector<int>& numbers) {
+    if (numbers.empty()) {
+        cout << "Base case: empty vector. Return 0" << endl;
+        return 0; // Nothing left to count
+    }
+
+    int lastElement = numbers.back();
+    numbers.pop_back();                 // Remove the last element
+    cout << "Removing: " << lastElement << endl;
+
+    int sum = addValues(numbers);       // recursive call on rest of vector
+
+    sum = sum + lastElement;
+
+    cout << "Returning total: " << sum << endl;
+    return sum;
+}
+
+int main() {
+    vector<int> numbers = {10, 20, 30, 40, 50};
+    int sum = addValues(numbers);
+    cout << "The sum of the values in the vector is: " << sum << endl;
+}

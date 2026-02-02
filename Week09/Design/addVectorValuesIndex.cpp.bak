@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int addValues(const vector<int>& numbers, size_t index = 0) {
+    if (index >= numbers.size()) {
+        cout << "Reached the end. Returning 0." << endl;
+        return 0; // Nothing left to count
+    }
+
+    cout << "Starting index " << index << " with value " << numbers.at(index) << endl;
+
+    int sum = addValues(numbers, index + 1);       // recursive call on rest of vector
+
+    sum = sum + numbers.at(index);
+    cout << "Returning total: " << sum << endl;
+    return sum;
+}
+
+// Alternative without default parameter
+// int addValues(const vector<int>& numbers) {
+//     return addValues(numbers, 0);  //start recursion with extra params
+// }
+
+int main() {
+    vector<int> numbers = {10, 20, 30, 40, 50};
+    int sum = addValues(numbers);
+    cout << "The sum of the values in the vector is: " << sum << endl;
+}

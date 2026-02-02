@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template<typename T>
+int linearSearchRecursive(const vector<T>& vec, T key, int currentIndex = 0) {
+    if (currentIndex >= vec.size()) {
+        // Reached the end without finding the key
+        return -1; 
+    } else if (vec.at(currentIndex) == key) {
+        // Found the key at the current index
+        return currentIndex;
+    } else {
+        // Not found yet, check the next index, return the result
+        return linearSearchRecursive(vec, key, currentIndex + 1);
+    }
+}
+
+int main() {
+    vector<int> numbers = {10, 20, 30, 40, 50};
+    int key;
+    cout << "Enter the value to search for: ";
+    cin >> key;
+    cout << key << endl;
+
+    int result = linearSearchRecursive(numbers, key);
+
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found in the vector." << endl;
+    }
+}
