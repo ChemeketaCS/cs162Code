@@ -7,6 +7,7 @@ using namespace std;
 int main() {
     // Create a list of strings
     list<string> fruit = {"apple", "date", "banana", "cherry"};
+    cout << fruit.at(2) << endl;
 
     // // This would not compile:
     //cout << fruit.at(2) << endl;
@@ -18,8 +19,12 @@ int main() {
     list<string>::iterator it = fruit.begin();
     // Use *it to get the value the iterator points to
     cout << "First element: " << *it << endl;
+    string word = *it;
+    *it = "avocado";
     ++it; // now at 2nd element
     cout << "Second element: " << *it << endl;
     ++it; // now at 3rd element
     cout << "Third element: " << *it << endl;
+    -- it; // back to 2nd element
+    cout << "Back to second element: " << *it << endl;
 }
