@@ -1,0 +1,24 @@
+#include <iostream>
+#include <list>
+#include <string>
+
+using namespace std;
+
+int main() {
+    list<string> jobs;
+
+    auto x = 10;            // x is int
+    auto y = 3.14;          // y is double
+
+    auto s1 = "hello";    // s1 is const char*, not a std::string
+    string s2 = "world";  // s2 is std::string
+    auto s3 = s2;         // s3 is std::string
+
+    // // Can't change types
+    // x = s2;  // error, x is an int
+
+    auto it = jobs.begin();  // it is list<string>::iterator
+
+    cout << "x: " << x << ", y: " << y << endl;
+    cout << "Iterator points to: " << *it << endl;
+}
