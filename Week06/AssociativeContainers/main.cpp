@@ -32,6 +32,10 @@ int main() {
        << (uniqueWords.contains("missing") ? "yes" : "no") << endl;
 
   // Display the unique words
+  // cout << "First unique word: " << uniqueWords.at(0) << endl; // set does not support at()
+  auto it = uniqueWords.begin();  // it is set<string>::iterator
+  cout << "First unique word: " << *it << endl;
+
   cout << "Unique words found:" << endl;
   for (const auto& w : uniqueWords) {
     cout << w << endl;

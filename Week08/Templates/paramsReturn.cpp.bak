@@ -8,9 +8,21 @@ void printMultiple(T value, int n) {
     }
 }
 
+template <typename T>
+bool areSame(T first, T second) {
+    return first == second;
+}
+
+// template <typename T>
+// bool areSame(const T& first, const T& second) {
+//     return first == second;
+// }
+
 int main() {
     printMultiple(5, 3);        // prints "555"
     cout << endl;
     printMultiple("*", 10);     // prints "**********"
     cout << endl;
+
+    cout << areSame(5, 5) << endl;
 }
