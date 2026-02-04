@@ -5,6 +5,15 @@
 using namespace std;
 
 int main() {
+  map<char, string> charMap;
+  charMap.insert({'a', "Apple"}); // add a pair
+  charMap.emplace('b', "Banana"); // add a key/value
+  charMap.erase('b');             // remove 'b' record
+  if (charMap.contains('a')) {
+    string value = charMap.at('a'); // access value for key 'a'
+    cout << value << endl;
+  }
+
   // Sample text to read words from
   string sampleText = R"(
   apple banana orange apple grape banana pear orange kiwi mango pear peach
@@ -21,9 +30,9 @@ int main() {
   string word;
   while (textStream >> word) {
     if (wordCounts.contains(word)) {
-      wordCounts.at(word)++;    // Increment count if word already exists
+      wordCounts.at(word)++; // Increment count if word already exists
     } else {
-      wordCounts.insert({word, 1});  // Initialize count to 1 if new word
+      wordCounts.insert({word, 1}); // Initialize count to 1 if new word
     }
   }
 

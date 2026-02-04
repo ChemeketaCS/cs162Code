@@ -1,0 +1,37 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+  // Create a map to hold word counts
+  map<string, int> wordCounts;
+  wordCounts.insert({"apple", 4});
+  wordCounts.insert({"banana", 2});
+  wordCounts.insert({"orange", 5});
+
+  wordCounts.erase("banana"); // Remove banana from the map
+  wordCounts.erase("grape");  // No effect, grape not in map
+
+  // Access and display counts with iterator
+  for (auto it = wordCounts.begin(); it != wordCounts.end(); ++it) {
+    cout << it->first << ": " << it->second << endl;
+  }
+
+  // Access and display counts range-based for loop
+  for (const pair<const string, int>& p : wordCounts) {
+    cout << p.first << ": " << p.second << endl;
+  }
+
+  // Or, using auto
+  cout << "Using auto:" << endl;
+  for (const auto& p : wordCounts) {
+    cout << p.first << ": " << p.second << endl;
+  }
+
+  // Alternative using structured bindings
+  for (const auto& [word, count] : wordCounts) {
+      cout << word << ": " << count << endl;
+  }
+}

@@ -1,0 +1,39 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main() {
+  // Create a map of strings to vectors of strings
+  // Each element is a pair<string, vector<string>>
+  map<string, vector<string>> modelNames = {
+      {"Tesla", {"Model S", "Model 3", "Model A"}},
+      {"Ford", {"Mustang", "F-150", "Explorer"}},
+      {"Toyota", {"Camry", "Corolla", "RAV4"}}};
+
+  // Insert a new model into an existing brand
+  modelNames.at("Ford").push_back("Bronco");
+
+  // Insert a new brand with its models
+  modelNames.insert({"Honda", {"Civic", "Accord", "CR-V"}});
+
+  // Test if a brand exists and either add a model or create a new brand
+  string testBrand = "Chevrolet";
+  string newModel = "Malibu";
+  if (modelNames.contains(testBrand)) {
+    modelNames.at(testBrand).push_back(newModel);
+  } else {
+    modelNames.insert({testBrand, {newModel}});
+  }
+
+  // Print all models for each brand
+  for (const auto& [brand, models] : modelNames) {
+    // Brand holds the key, models holds the vector of model names
+    cout << brand << ": ";
+    for (const auto& model : models) {
+      cout << model << ", ";
+    }
+    cout << endl;
+  }
+}
