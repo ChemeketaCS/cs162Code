@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string>
+
+#include "PlayerList.h"
+
+using namespace std;
+
+int main() {
+  cout << "Start of main" << endl;
+  // Create a PlayerList on the heap with space for 3 players
+  PlayerList* pList = new PlayerList(3);
+  cout << "PlayerList created on the heap." << endl;
+  cout << "Calling delete on PlayerList" << endl;
+  delete pList; // Clean up the heap memory
+  cout << "Done deleting PlayerList from the heap." << endl;
+  cout << "End of main" << endl;
+}
