@@ -20,10 +20,10 @@ int main() {
     intPair.second = 4;
     cout << "intPair: " << intPair.first << ", " << intPair.second << endl;
 
-    Pair<double> doublePair = {2.5, 3.7};
+    Pair<double> doublePair {2.5, 3.7};
     cout << "doublePair: " << doublePair.first << ", " << doublePair.second << endl;
 
-    Pair<int> anotherIntPair = {3, 4};
+    Pair<int> anotherIntPair {3, 4};
     cout << "intPair and anotherIntPair are equal: "
          << areEqual(intPair, anotherIntPair) << endl;
 }

@@ -7,20 +7,24 @@ private:
     T first;
     T second;
 public:
-    // Full formal declaration
-    // Pair<T>(T a, T b);
-    // Short form, <T> is implied from class
+    // Constructors are still just called "Pair"
+    Pair();
     Pair(T a, T b);
 
-    // Full formal declaration
-    // bool operator==(const Pair<T>& other) const;
-    // Short form, <T> is implied from class
-    bool operator==(const Pair& other) const;
+    // Parameter is another Pair of the same type
+    bool operator==(const Pair<T>& other) const;
 
     T getFirst() const;
     T getSecond() const;
 };
 
+// Each member function must be defined as a template
+// and the class name must be qualified with <T>
+template<typename T>
+Pair<T>::Pair() {
+    first = T{};  // Default value for type T
+    second = T{}; // Default value for type T
+}
 
 template<typename T>
 Pair<T>::Pair(T a, T b) {
@@ -29,7 +33,7 @@ Pair<T>::Pair(T a, T b) {
 }
 
 template<typename T>
-bool Pair<T>::operator==(const Pair& other) const {
+bool Pair<T>::operator==(const Pair<T>& other) const {
     return (first == other.first) && (second == other.second);
 }
 

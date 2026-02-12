@@ -13,4 +13,13 @@ int main() {
     Pair<int> anotherIntPair(3, 4);
     cout << "intPair and anotherIntPair are equal: "
          << (intPair == anotherIntPair) << endl;
+
+    Pair< Pair<int> > nestedPair(Pair<int>(1, 2), Pair<int>(3, 4));
+
+    Pair<vector<int>> vectorPair(vector<int>{1, 2, 3}, vector<int>{4, 5, 6});
+
+    cout << "nestedPair: (" << nestedPair.getFirst().getFirst() << ", "
+         << nestedPair.getFirst().getSecond() << "), ("
+         << nestedPair.getSecond().getFirst() << ", "
+         << nestedPair.getSecond().getSecond() << ")" << endl;
 }
