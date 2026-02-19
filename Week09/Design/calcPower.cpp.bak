@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int calcPower(int base, int exponent) {
+    if (exponent == 0) {
+        return 1; // Base case: any number to the power of 0 is 1
+    } else {
+        // x^n = x * x^(n-1)
+        int powerOfRest = calcPower(base, exponent - 1);
+        return base * powerOfRest;
+    }
+}
+
+int main() {
+    int base = 2;
+    int exponent = 4;
+    int number = calcPower(base, exponent);
+    cout << base << " raised to the power of " 
+         << exponent << " is: " << number << endl;
+}
