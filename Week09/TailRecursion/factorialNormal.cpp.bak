@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 
+// int iterativeFactorial(int n) {
+//   int total = 1;
+//   for (int i = 1; i <= n; i++) {
+//     total *= i;
+//   }
+//   return total;
+// }
 int factorial(int n) {
     if (n == 0) {
         return 1; // Base case: factorial of 0 is 1
