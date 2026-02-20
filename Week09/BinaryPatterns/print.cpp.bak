@@ -1,18 +1,20 @@
 #include <iostream>
 using namespace std;
 
-int binaryPatterns(int n, string patternSoFar = "") {
-    if (n == 0) {
-        cout << patternSoFar << endl;
-        return 1; // Base case: one pattern of length 0 (the empty pattern)
-    } else {
-        int countWithZero = binaryPatterns(n - 1, patternSoFar + "0");
-        int countWithOne = binaryPatterns(n - 1, patternSoFar + "1");
-        return countWithZero + countWithOne;
+void printBinaryStrings(const string& current, int remainingBits) {
+    if (remainingBits == 0) {
+        cout << current << endl;
+        return;
     }
+    printBinaryStrings(current + "0", remainingBits - 1);
+    printBinaryStrings(current + "1", remainingBits - 1);
+}
+
+// non-recursive wrapper
+void printBinaryStrings(int n) {
+    printBinaryStrings("", n);
 }
 
 int main() {
-    int count = binaryPatterns(3);
-    cout << "Number of binary patterns of length 3: " << count << endl;
+    printBinaryStrings(3);
 }
