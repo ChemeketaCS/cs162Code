@@ -12,7 +12,7 @@
     "debug.onTaskErrors": "showErrors",
     "extensions.ignoreRecommendations": true,
     "workbench.remoteIndicator.showExtensionRecommendations": false,
-    "chat.disableAIFeatures": false,
+    "chat.disableAIFeatures": true,
     "C_Cpp.debugShortcut": false,
     "cSpell.enabled": false
 }
