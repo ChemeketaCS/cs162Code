@@ -1,0 +1,66 @@
+#include "Hangman.h"
+
+#include <iostream>
+
+using namespace std;
+
+Hangman::Hangman(const string& word) {
+  this->m_word = word;
+  m_board = string(word.length(), '_');
+  m_guessedLetters = vector<char>();
+  m_wrongGuesses = 0;
+}
+
+void Hangman::makeGuess(char guess) {
+  for (char guessedLetter : m_guessedLetters) {
+    if (guessedLetter == guess) {
+      cout << "You already guessed that letter!" << endl;
+      return;
+    }
+  }
+
+  m_guessedLetters.push_back(guess);
+
+  bool correctGuess = false;
+  for (size_t index = 0; index < m_word.length(); index++) {
+    if (m_word[index] == guess) {
+      m_board[index] = guess;
+      correctGuess = true;
+      break;
+    }
+  }
+
+  if (!correctGuess) {
+    m_wrongGuesses++;
+  }
+}
+
+bool Hangman::isDone() const {
+  return isWin();
+}
+
+bool Hangman::isWin() const {
+  return m_board == m_word;
+}
+
+string Hangman::getBoard() const {
+  return m_board;
+}
+
+string Hangman::getWord() const {
+  return m_word;
+}
+
+string Hangman::getGuessedLetters() const {
+  string result;
+  for (char guessedLetter : m_guessedLetters) {
+    result += guessedLetter;
+    result += ' ';
+  }
+
+  return result;
+}
+
+int Hangman::getWrongGuesses() const {
+  return m_wrongGuesses;
+}
