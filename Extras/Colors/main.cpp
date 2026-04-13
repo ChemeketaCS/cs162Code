@@ -1,6 +1,7 @@
 #include <format>
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -26,10 +27,10 @@ public:
   }
 
   string toHex() const {
-    return std::format("#{0:02X}{1:02X}{2:02X}", getRed(), getGreen(), getBlue());
+    return format("#{0:02X}{1:02X}{2:02X}", getRed(), getGreen(), getBlue());
   }
   string toRGB() const {
-    return std::format("rgb({0}, {1}, {2})", getRed(), getGreen(), getBlue());
+    return format("rgb({0}, {1}, {2})", getRed(), getGreen(), getBlue());
   }
 
   uint8_t getRed() const {
@@ -53,22 +54,29 @@ public:
   }
 
   void darken(double factor) {
-    m_red = clamp(getRed() * (1 - factor));
-    m_green = clamp(getGreen() * (1 - factor));
-    m_blue = clamp(getBlue() * (1 - factor));
+    // Access other's member variables directly
+    m_red = clamp(m_red * (1 - factor));
+    m_green = clamp(m_green * (1 - factor));
+    m_blue = clamp(m_blue * (1 - factor));
   }
 
   void changeTo(const Color& other) {
+    // Access other's members via getter functions
     m_red = other.getRed();
     m_green = other.getGreen();
     m_blue = other.getBlue();
   }
 
   Color blend(const Color& other, double alpha) const {
-    const uint8_t r = clamp(getRed() * (1 - alpha) + other.getRed() * alpha);
-    const uint8_t g = clamp(getGreen() * (1 - alpha) + other.getGreen() * alpha);
-    const uint8_t b = clamp(getBlue() * (1 - alpha) + other.getBlue() * alpha);
+    const uint8_t r = clamp(m_red * (1 - alpha) + other.m_red * alpha);
+    const uint8_t g = clamp(m_green * (1 - alpha) + other.m_green * alpha);
+    const uint8_t b = clamp(m_blue * (1 - alpha) + other.m_blue * alpha);
     return Color(r, g, b);
+  }
+
+  bool isEqual(const Color& other) const {
+    // return true if all RGB components are the same between this and other, false otherwise
+    return true;
   }
 };
 
@@ -81,7 +89,7 @@ int main () {
   colors.push_back(Color(0, 0, 255));
 
   for (const Color& c : colors) {
-    std::cout << "Color: " << c.toHex() << " (" << c.toRGB() << ")" << std::endl;
+    cout << "Color: " << c.toHex() << " (" << c.toRGB() << ")" << endl;
   }
 
   cout << "-----------------------------------------" << endl;
@@ -96,13 +104,31 @@ int main () {
   }
   
   for (const Color& c : gradient) {
-    std::cout << "Gradient: " << c.toHex() << " (" << c.toRGB() << ")" << std::endl;
+    cout << "Gradient: " << c.toHex() << " (" << c.toRGB() << ")" << endl;
   }
 
   cout << "-----------------------------------------" << endl;
   Color c1(255, 0, 0); // red
-  std::cout << "c1: " << c1.toHex() << " (" << c1.toRGB() << ")" << std::endl;
+  cout << "c1: " << c1.toHex() << " (" << c1.toRGB() << ")" << endl;
   Color c2(0, 0, 255); // blue
   c1.changeTo(c2); // c1 should now be blue
-  std::cout << "After changeTo: " << c1.toHex() << " (" << c1.toRGB() << ")" << std::endl;
+  cout << "After changeTo: " << c1.toHex() << " (" << c1.toRGB() << ")" << endl;
+  
+  
+  cout << "-----------------------------------------" << endl;
+  Color red1(200, 20, 0);
+  Color red2(200, 20, 0);
+  Color red3(200, 25, 0);
+  Color red4(199, 0, 0);
+  if (!red1.isEqual(red2)) {
+    cout << "ERROR: red1 should be equal to red2!!!!" << endl;
+  }
+  
+  if (red1.isEqual(red3)) {
+    cout << "ERROR: red1 should NOT be equal to red3!!!!" << endl;
+  }
+  
+  if (red1.isEqual(red4)) {
+    cout << "ERROR: red1 should NOT be equal to red4!!!!" << endl;
+  }
 }
