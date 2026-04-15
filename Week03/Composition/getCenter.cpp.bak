@@ -12,12 +12,26 @@ public:
         m_center = Point(x, y);
     }
 
-    Point getCenter() const {
-        return m_center;
-    }
+    // v1: Return a copy of the center point
+Point getCenter() const {
+    return m_center;
+}
+
+// v2: Return a reference to the center point
+// Allows clients to modify the center point directly
+// Point& getCenter() {
+//     return m_center;
+// }
+
+// v3: Return a const reference to the center point
+// Avoid copy, but prevent modification
+// const Point& getCenter() const {
+//     return m_center;
+// }
 
     string toString() const {
         string s = format("Center: {}, Radius: {}", m_center.toString(), m_radius);
+        return s;
     }
 
 private:
@@ -28,7 +42,10 @@ private:
 int main() {
     Circle c1(5.0, 2, 1);
 
-    Point center = c1.getCenter();
+    Point center = c1.getCenter();               // call v1
+    // Point& center = c1.getCenter();              // call v2
+    // const Point& center = c1.getCenter();        // call v3
+
     cout << "c1: " << c1.toString() << endl;
     cout << "center: " << center.getY() << endl;
 
