@@ -8,7 +8,6 @@
  */
 class Point {
 public:
-    double getX() const;
     /**
      * @brief Constructs a Point with the specified coordinates.
      * @param x The x-coordinate of the point.
