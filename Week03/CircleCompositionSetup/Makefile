@@ -1,3 +1,4 @@
+#!CUSTOM!
 # force macs to use g++-15 to avoid clang mapped to g++
 ifeq ($(OS),Windows_NT)
 	CXX = g++
@@ -21,19 +22,19 @@ CXXFLAGS += -Wfloat-equal -Wredundant-decls -Wshadow -Wconversion -Wuninitialize
 # endif
 
 # list .h files here
-HEADERS =
+HEADERS = Circle.h Point.h
 
 # list .cpp files here
-PROGRAM_FILES = *.cpp
-SHARED_FILES = 
+TEST_FILES = tests.cpp
+SHARED_FILES = Circle.cpp Point.cpp
 
 .PHONY: all
-all: program.exe
+all: tests.exe
 
-.PHONY: program.exe # Always force rebuild of program
-program.exe:  $(SHARED_FILES) $(PROGRAM_FILES) $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(SHARED_FILES) $(PROGRAM_FILES) -o $@
+.PHONY: tests.exe # Always force rebuild of tests
+tests.exe:  $(SHARED_FILES) $(TEST_FILES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(SHARED_FILES) $(TEST_FILES) -o $@
 
 .PHONY: clean
 clean:
-	rm -f program.exe
+	rm -f tests.exe
